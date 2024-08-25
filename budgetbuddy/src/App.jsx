@@ -1,5 +1,8 @@
 import { useState } from "react";
 import logo from "./assets/logo.png";
+import axios from "axios";
+import React from "react";
+import { useEffect } from "react";
 import "./App.css";
 import {
     Dialog,
@@ -59,6 +62,26 @@ function classNames(...classes) {
 
 function App() {
     const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [transactions, setTransactions] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        async function getTransactions() {
+            try {
+                setLoading(true);
+                const response = await axios.get(
+                    "http://localhost:3000/transaction"
+                );
+                setTransactions(response.data);
+            } catch (error) {
+                setError(error);
+            } finally {
+                setLoading(false);
+            }
+        }
+        getTransactions();
+    }, []);
 
     return (
         <>
@@ -317,10 +340,33 @@ function App() {
                         </div>
                     </div>
                     {/* ====== main content ====== */}
-                    <main className="py-10 bg-[#F5F7FA]" >
+                    <main className="py-10 bg-[#F5F7FA]">
                         <div className="px-4 sm:px-6 lg:px-8">
+                            {error && (
+                                <div className="mt-8">
+                                    <div className="rounded-md bg-red-50 p-4">
+                                        <div className="flex">
+                                            <div className="flex-shrink-0">
+                                                <XMarkIcon
+                                                    className="h-5 w-5 text-red-400"
+                                                    aria-hidden="true"
+                                                />
+                                            </div>
+                                            <div className="ml-3">
+                                                <h3 className="text-sm font-medium text-red-800">
+                                                    {error}
+                                                </h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
                             <Cards />
-                            <TableDashboard />
+                            {loading ? (
+                                <p>Loading...</p>
+                            ) : (
+                                <TableDashboard transactions={transactions} />
+                            )}
                         </div>
                     </main>
                 </div>

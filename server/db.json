@@ -1,0 +1,20 @@
+{
+    "transaction": [
+        {
+            "id": "1",
+            "date": "21/08/2024",
+            "amount": "Rp320.000",
+            "category": "Health",
+            "account": "Bank Mandiri",
+            "note": "Buy medicine for my daughter"
+        },
+        {
+            "id": "2",
+            "date": "22/08/2024",
+            "amount": "Rp50.000",
+            "category": "Food",
+            "account": "Shopee",
+            "note": "Buy spaghetti in Jardin Cafe"
+        }
+    ]
+  }

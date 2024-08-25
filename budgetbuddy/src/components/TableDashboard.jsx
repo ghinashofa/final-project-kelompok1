@@ -1,39 +1,39 @@
 import React from "react";
-const people = [
-    {
-        name: "Lindsay Walton",
-        title: "Front-end Developer",
-        email: "lindsay.walton@example.com",
-        role: "Member",
-    },
-    {
-        name: "Lindsay Walton",
-        title: "Front-end Developer",
-        email: "lindsay.walton@example.com",
-        role: "Member",
-    },
-    {
-        name: "Lindsay Walton",
-        title: "Front-end Developer",
-        email: "lindsay.walton@example.com",
-        role: "Member",
-    },
-    {
-        name: "Lindsay Walton",
-        title: "Front-end Developer",
-        email: "lindsay.walton@example.com",
-        role: "Member",
-    },
-    {
-        name: "Lindsay Walton",
-        title: "Front-end Developer",
-        email: "lindsay.walton@example.com",
-        role: "Member",
-    },
-    // More people...
-];
+// const people = [
+//     {
+//         name: "Lindsay Walton",
+//         title: "Front-end Developer",
+//         email: "lindsay.walton@example.com",
+//         role: "Member",
+//     },
+//     {
+//         name: "Lindsay Walton",
+//         title: "Front-end Developer",
+//         email: "lindsay.walton@example.com",
+//         role: "Member",
+//     },
+//     {
+//         name: "Lindsay Walton",
+//         title: "Front-end Developer",
+//         email: "lindsay.walton@example.com",
+//         role: "Member",
+//     },
+//     {
+//         name: "Lindsay Walton",
+//         title: "Front-end Developer",
+//         email: "lindsay.walton@example.com",
+//         role: "Member",
+//     },
+//     {
+//         name: "Lindsay Walton",
+//         title: "Front-end Developer",
+//         email: "lindsay.walton@example.com",
+//         role: "Member",
+//     },
+//     // More people...
+// ];
 
-export default function TableDashboard() {
+export default function TableDashboard({ transactions = [] }) { // Menggunakan default parameter
     return (
         <div className="px-4 sm:px-6 lg:px-8 mt-10 bg-white rounded-2xl shadow-custom-combined p-6">
             <div className="sm:flex sm:items-center">
@@ -87,6 +87,12 @@ export default function TableDashboard() {
                                     </th>
                                     <th
                                         scope="col"
+                                        className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                                    >
+                                        Notes
+                                    </th>
+                                    <th
+                                        scope="col"
                                         className="relative py-3.5 pl-3 pr-4 sm:pr-6 lg:pr-8"
                                     >
                                         <span className="sr-only">Edit</span>
@@ -94,42 +100,47 @@ export default function TableDashboard() {
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-gray-200 bg-white">
-                                {people.map((person) => (
-                                    <tr key={person.email}>
-                                        <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8">
-                                            {person.name}
-                                        </td>
-                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                            {person.title}
-                                        </td>
-                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                            {person.email}
-                                        </td>
-                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                            {person.role}
-                                        </td>
-                                        <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm space-x-5 font-medium sm:pr-6 lg:pr-8">
-                                            <a
-                                                href="#"
-                                                className="text-indigo-600 hover:text-indigo-900"
-                                            >
-                                                Edit
-                                                <span className="sr-only">
-                                                    , {person.name}
-                                                </span>
-                                            </a>
-                                            <a
-                                                href="#"
-                                                className="text-indigo-600 hover:text-indigo-900"
-                                            >
-                                                Delete
-                                                <span className="sr-only">
-                                                    , {person.name}
-                                                </span>
-                                            </a>
+                                {transactions.length > 0 ? (
+                                    transactions.map((transaction) => (
+                                        <tr key={transaction.id}>
+                                            <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8">
+                                                {transaction.date}
+                                            </td>
+                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                {transaction.amount}
+                                            </td>
+                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                {transaction.category}
+                                            </td>
+                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                {transaction.account}
+                                            </td>
+                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                {transaction.note}
+                                            </td>
+                                            <td className="relative whitespace-nowrap py-4 text-right text-sm space-x-3 font-medium sm:pr-4 lg:pr-6">
+                                                <a
+                                                    href="#"
+                                                    className="text-white bg-[#4780E8] p-2 px-6 hover:bg-blue-700 rounded-lg"
+                                                >
+                                                    Edit
+                                                </a>
+                                                <a
+                                                    href="#"
+                                                    className="text-white bg-red-500 p-2 px-6 hover:bg-red-600 rounded-lg"
+                                                >
+                                                    Delete
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    ))
+                                ) : (
+                                    <tr>
+                                        <td colSpan="5" className="text-center py-4 text-sm text-gray-500">
+                                            No transactions found
                                         </td>
                                     </tr>
-                                ))}
+                                )}
                             </tbody>
                         </table>
                     </div>
