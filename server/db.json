@@ -6,7 +6,8 @@
             "amount": "Rp320.000",
             "category": "Health",
             "account": "Bank Mandiri",
-            "note": "Buy medicine for my daughter"
+            "note": "Buy medicine for my daughter",
+            "status": "Income"
         },
         {
             "id": "2",
@@ -14,7 +15,8 @@
             "amount": "Rp50.000",
             "category": "Food",
             "account": "Shopee",
-            "note": "Buy spaghetti in Jardin Cafe"
+            "note": "Buy spaghetti in Jardin Cafe",
+            "status": "Expenses"
         }
     ]
   }

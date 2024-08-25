@@ -1,37 +1,4 @@
 import React from "react";
-// const people = [
-//     {
-//         name: "Lindsay Walton",
-//         title: "Front-end Developer",
-//         email: "lindsay.walton@example.com",
-//         role: "Member",
-//     },
-//     {
-//         name: "Lindsay Walton",
-//         title: "Front-end Developer",
-//         email: "lindsay.walton@example.com",
-//         role: "Member",
-//     },
-//     {
-//         name: "Lindsay Walton",
-//         title: "Front-end Developer",
-//         email: "lindsay.walton@example.com",
-//         role: "Member",
-//     },
-//     {
-//         name: "Lindsay Walton",
-//         title: "Front-end Developer",
-//         email: "lindsay.walton@example.com",
-//         role: "Member",
-//     },
-//     {
-//         name: "Lindsay Walton",
-//         title: "Front-end Developer",
-//         email: "lindsay.walton@example.com",
-//         role: "Member",
-//     },
-//     // More people...
-// ];
 
 export default function TableDashboard({ transactions = [] }) { // Menggunakan default parameter
     return (
@@ -93,6 +60,12 @@ export default function TableDashboard({ transactions = [] }) { // Menggunakan d
                                     </th>
                                     <th
                                         scope="col"
+                                        className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                                    >
+                                        Status
+                                    </th>
+                                    <th
+                                        scope="col"
                                         className="relative py-3.5 pl-3 pr-4 sm:pr-6 lg:pr-8"
                                     >
                                         <span className="sr-only">Edit</span>
@@ -117,6 +90,9 @@ export default function TableDashboard({ transactions = [] }) { // Menggunakan d
                                             </td>
                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                                 {transaction.note}
+                                            </td>
+                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                {transaction.status}
                                             </td>
                                             <td className="relative whitespace-nowrap py-4 text-right text-sm space-x-3 font-medium sm:pr-4 lg:pr-6">
                                                 <a
