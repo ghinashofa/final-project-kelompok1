@@ -27,11 +27,9 @@ import {
     ChevronDownIcon,
     MagnifyingGlassIcon,
 } from "@heroicons/react/20/solid";
-import {
-    CurrencyDollarIcon,
-    ArrowTrendingUpIcon,
-    ArrowTrendingDownIcon,
-} from "@heroicons/react/24/outline";
+
+import Cards from "./components/Cards";
+import TableDashboard from "./components/TableDashboard";
 
 const navigation = [
     { name: "Dashboard", href: "#", icon: HomeIcon, current: true },
@@ -321,55 +319,8 @@ function App() {
                     {/* ====== main content ====== */}
                     <main className="py-10 bg-[#F5F7FA]" >
                         <div className="px-4 sm:px-6 lg:px-8">
-                            <div className="flex flex-col lg:flex-row gap-6">
-                                {/* === Net Balance Card === */}
-                                <div className="flex-1 flex flex-col bg-white rounded-lg shadow-custom-combined p-6">
-                                    <div className="flex items-center space-x-2 mb-4">
-                                        <CurrencyDollarIcon className="h-6 w-6 text-blue-500" />
-                                        <h3 className="font-semibold text-black">
-                                            Net Balance
-                                        </h3>
-                                    </div>
-                                    <div className="text-2xl font-bold text-[#4C3BCF] tracking-wider">
-                                        Rp 2.000.000
-                                    </div>
-                                    <div className="text-red-500 mt-2">
-                                        -Rp15.800.000
-                                    </div>
-                                </div>
-
-                                {/* === Total Income Card ===*/}
-                                <div className="flex-1 flex flex-col bg-white rounded-lg shadow-custom-combined p-6">
-                                    <div className="flex items-center space-x-2 mb-4">
-                                        <ArrowTrendingUpIcon className="h-6 w-6 text-blue-500" />
-                                        <h3 className="font-semibold text-black">
-                                            Total Income
-                                        </h3>
-                                    </div>
-                                    <div className="text-2xl font-bold text-[#4C3BCF] tracking-wider">
-                                        Rp 3.000.000
-                                    </div>
-                                    <div className="text-green-500 mt-2">
-                                        +Rp3.000.000
-                                    </div>
-                                </div>
-
-                                {/* === Total Expenses Card ===*/}
-                                <div className="flex-1 flex flex-col bg-white rounded-lg shadow-custom-combined p-6">
-                                    <div className="flex items-center space-x-2 mb-4">
-                                        <ArrowTrendingDownIcon className="h-6 w-6 text-red-500" />
-                                        <h3 className="font-semibold text-black">
-                                            Total Expenses
-                                        </h3>
-                                    </div>
-                                    <div className="text-2xl font-bold text-[#4C3BCF] tracking-wider">
-                                        Rp 1.000.000
-                                    </div>
-                                    <div className="text-red-500 mt-2">
-                                        +Rp800.000
-                                    </div>
-                                </div>
-                            </div>
+                            <Cards />
+                            <TableDashboard />
                         </div>
                     </main>
                 </div>
