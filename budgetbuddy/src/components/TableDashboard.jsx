@@ -1,6 +1,34 @@
 import React from "react";
 
 export default function TableDashboard({ transactions = [] }) { // Menggunakan default parameter
+    function handleChange(e) {
+        const value = e.target.value
+    }
+
+    function handleAdd(e) {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const data = {
+            name: formData.get("name"),
+            amount: formData.get("amount"),
+            category: formData.get("category"),
+            date: formData.get("date"),
+            note: formData.get("note"),
+        };
+        console.log(data);
+        async function addTransaction() {
+            try {
+                const response = await axios.post(
+                    "http://localhost:3000/transaction",
+                    data
+                );
+                console.log(response);
+            } catch (error) {
+                setError(error);
+            }
+        }
+        addTransaction();
+    }
     return (
         <div className="px-4 sm:px-6 lg:px-8 mt-10 bg-white rounded-2xl shadow-custom-combined p-6">
             <div className="sm:flex sm:items-center">
@@ -16,6 +44,7 @@ export default function TableDashboard({ transactions = [] }) { // Menggunakan d
                 <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
                     <button
                         type="button"
+                        onClick={handleAdd}
                         className="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     >
                         Add new transaction
