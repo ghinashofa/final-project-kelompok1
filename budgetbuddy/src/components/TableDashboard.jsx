@@ -1,6 +1,10 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { ModalForm } from "./ModalForm";
+
 
 export default function TableDashboard({ transactions = [] }) { // Menggunakan default parameter
+    const navigate = useNavigate();
     function handleChange(e) {
         const value = e.target.value
     }
@@ -42,13 +46,14 @@ export default function TableDashboard({ transactions = [] }) { // Menggunakan d
                     </p>
                 </div>
                 <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-                    <button
+                    <ModalForm />
+                    {/* <button
                         type="button"
                         onClick={handleAdd}
                         className="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     >
                         Add new transaction
-                    </button>
+                    </button> */}
                 </div>
             </div>
             <div className="mt-8 flow-root">

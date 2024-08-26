@@ -4,9 +4,11 @@ import { router } from "./router/router";
 import { RouterProvider } from "react-router-dom";
 
 function App() {
-    <>
-        <RouterProvider router={router} />
-    </>
+    return (
+        <>
+            <RouterProvider router={router} />
+        </>
+    );
 }
 
 export default App;
