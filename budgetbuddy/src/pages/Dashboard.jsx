@@ -73,6 +73,7 @@ export default function Dashboard() {
                 );
                 setTransactions(response.data);
                 console.log(response,"<< response");
+
             } catch (error) {
                 setError(error);
             } finally {
@@ -364,7 +365,8 @@ export default function Dashboard() {
                             {loading ? (
                                 <p>Loading...</p>
                             ) : (
-                                <TableDashboard transactions={transactions} />
+                                <TableDashboard transactions={transactions} setTransactions={setTransactions} />
+
                             )}
                         </div>
                     </main>

@@ -1,9 +1,48 @@
 import React from "react";
 import { ModalForm } from "./ModalForm";
+import { Button } from "@headlessui/react";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 
-export default function TableDashboard({ transactions = [] }) { // Menggunakan default parameter
-    
+export default function TableDashboard({ transactions, setTransactions }) { // Menggunakan default parameter
+
+    function handleDelete(id) {
+        console.log(id, "<< id");
+        try {
+            async function deleteTransaction() {
+                const response = await axios.delete(
+                    `http://localhost:3000/transaction/${id}`
+                );
+                console.log(response, "<< Apa yang di delete?");
+                setTransactions(transactions.filter((transaction) => transaction.id!== id));
+            }
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    deleteTransaction();
+
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success",
+                    });
+                }
+            });
+            
+        } catch (error) {
+            console.log(error, "<< error");
+        }
+       
+    }
+
     return (
         <div className="px-4 sm:px-6 lg:px-8 mt-10 bg-white rounded-2xl shadow-custom-combined p-6">
             <div className="sm:flex sm:items-center">
@@ -17,7 +56,7 @@ export default function TableDashboard({ transactions = [] }) { // Menggunakan d
                     </p>
                 </div>
                 <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-                    <ModalForm />
+                    <ModalForm transactions={transactions} setTransactions={setTransactions} />
                 </div>
             </div>
             <div className="mt-8 flow-root">
@@ -99,12 +138,13 @@ export default function TableDashboard({ transactions = [] }) { // Menggunakan d
                                                 >
                                                     Edit
                                                 </a>
-                                                <a
+                                                <Button
                                                     href="#"
+                                                    onClick={() => handleDelete(transaction.id)}
                                                     className="text-white bg-red-500 p-2 px-6 hover:bg-red-600 rounded-lg"
                                                 >
                                                     Delete
-                                                </a>
+                                                </Button>
                                             </td>
                                         </tr>
                                     ))
