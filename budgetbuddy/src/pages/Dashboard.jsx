@@ -2,6 +2,7 @@ import React from "react";
 import logo from "../assets/logo.png";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button"
 import {
     Dialog,
     DialogBackdrop,
@@ -58,6 +59,8 @@ const userNavigation = [
 function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
 }
+
+
 
 export default function Dashboard() {
     const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -362,7 +365,8 @@ export default function Dashboard() {
                                     </div>
                                 </div>
                             )}
-                            <CardsDashboard transactions={transactions} />
+                            <CardsDashboard />
+
                             {loading ? (
                                 <p>Loading...</p>
                             ) : (
