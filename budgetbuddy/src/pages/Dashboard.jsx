@@ -30,8 +30,9 @@ import {
     MagnifyingGlassIcon,
 } from "@heroicons/react/20/solid";
 
-import Cards from "../components/Cards";
+import Cards from "../components/CardsDashboard";
 import TableDashboard from "../components/TableDashboard";
+import CardsDashboard from "../components/CardsDashboard";
 
 const navigation = [
     { name: "Dashboard", href: "#", icon: HomeIcon, current: true },
@@ -364,10 +365,7 @@ export default function Dashboard() {
                                     </div>
                                 </div>
                             )}
-                            <Cards />
-
-                            
-
+                            <CardsDashboard />
 
                             {loading ? (
                                 <p>Loading...</p>

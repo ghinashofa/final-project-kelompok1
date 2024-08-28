@@ -133,10 +133,10 @@ export default function TableDashboard({ transactions, setTransactions }) { // M
                                                 {transaction.status}
                                             </td>
                                             <td className="relative whitespace-nowrap py-4 text-right text-sm space-x-3 font-medium sm:pr-4 lg:pr-6">
-                                                <ModalFormEdit transactions={transactions} setTransactions={setTransactions}  />
+                                                <ModalFormEdit transaction={transaction} transactions={transactions} setTransactions={setTransactions}  />
                                                 <Button
                                                     onClick={() => handleDelete(transaction.id)}
-                                                    className="text-white bg-red-500 p-2 px-6 hover:bg-red-600 rounded-lg"
+                                                    className="text-white bg-red-500 p-2 px-6 hover:bg-red-600 rounded-lg hover:shadow-lg transition-all duration-200 ease-in-out"
                                                 >
                                                     Delete
                                                 </Button>
