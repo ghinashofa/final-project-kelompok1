@@ -32,7 +32,7 @@ import {
 import Cards from "../components/CardsDashboard";
 import TableDashboard from "../components/TableDashboard";
 import CardsDashboard from "../components/CardsDashboard";
-import LineChart from "@/components/LineChart";
+import LineCharts from "@/components/LineCharts";
 
 const navigation = [
     { name: "Dashboard", href: "#", icon: HomeIcon, current: true },
@@ -366,7 +366,7 @@ export default function Dashboard() {
                                 </div>
                             )}
                             <CardsDashboard transactions={transactions} />
-                            <LineChart />
+                            <LineCharts />
 
                             {loading ? (
                                 <p>Loading...</p>
