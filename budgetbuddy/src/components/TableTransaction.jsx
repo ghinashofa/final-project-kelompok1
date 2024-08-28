@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import { ModalFormEdit } from "./ModalFormEdit";
 
 
-export default function TableDashboard({ transactions, setTransactions }) { // Menggunakan default parameter
+export default function TableTransaction({ transactions, setTransactions }) { // Menggunakan default parameter
 
     function handleDelete(id) {
         console.log(id, "<< id");
@@ -112,7 +112,7 @@ export default function TableDashboard({ transactions, setTransactions }) { // M
                             </thead>
                             <tbody className="divide-y divide-gray-200 bg-white">
                                 {transactions.length > 0 ? (
-                                    transactions.slice(0, 5).map((transaction) => (
+                                    transactions.map((transaction) => (
                                         <tr key={transaction.id}>
                                             <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8">
                                                 {transaction.date}

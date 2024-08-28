@@ -1,13 +1,13 @@
 {
   "transaction": [
     {
-      "id": "86d1",
       "date": "2024-08-28",
       "amount": 1200000,
       "account": "Bank Mandiri",
       "note": "Salary",
+      "category": "Social Life",
       "status": "Income",
-      "category": "Social Life"
+      "id": "86d1"
     },
     {
       "id": "a415",
@@ -53,6 +53,15 @@
       "note": "Buy Noodles",
       "status": "Expenses",
       "category": "Food"
+    },
+    {
+      "id": "4e1c",
+      "date": "2024-08-28",
+      "amount": 150000,
+      "account": "Bank Mandiri",
+      "note": "Buy Makeup",
+      "status": "Expenses",
+      "category": "Beauty"
     }
   ]
 }
