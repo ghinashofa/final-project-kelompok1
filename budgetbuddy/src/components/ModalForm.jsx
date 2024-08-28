@@ -52,15 +52,25 @@ export function ModalForm({ transactions, setTransactions }) {
 
         const dataSelect = {
             ...formData,
+            amount: parseFloat(formData.amount),
             status: status,
             category: category,
         };
+
+        // if (isNaN(dataSelect.amount)) {
+        //     Swal.fire({
+        //         icon: "warning",
+        //         title: "Invalid Amount",
+        //         text: "Please enter a valid number for the amount.",
+        //     });
+        //     return; 
+        // }
 
         async function addTransaction() {
             try {
                 const response = await axios.post(
                     "http://localhost:3000/transaction",
-                    dataSelect
+                    dataSelect 
                 );
                 console.log("Transaction added successfully:", response.data);
                 setTransactions([...transactions, response.data]);

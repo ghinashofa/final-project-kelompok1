@@ -1,40 +1,58 @@
 {
   "transaction": [
     {
+      "id": "86d1",
       "date": "2024-08-28",
-      "amount": "450000",
-      "account": "Bank BCA",
+      "amount": 1200000,
+      "account": "Bank Mandiri",
       "note": "Salary",
-      "category": "Social Life",
       "status": "Income",
-      "id": "3aa0"
+      "category": "Social Life"
     },
     {
+      "id": "a415",
       "date": "2024-08-28",
-      "amount": "23000",
+      "amount": 7000000,
+      "category": "Social Life",
+      "account": "Bank Mandiri",
+      "note": "Salary",
+      "status": "Income"
+    },
+    {
+      "id": "a8d8",
+      "date": "2024-08-28",
+      "amount": 345000,
+      "category": "Beauty",
       "account": "Bank Mandiri",
       "note": "Buy Makeup",
-      "category": "Beauty",
-      "status": "Expenses",
-      "id": "29d0"
+      "status": "Expenses"
     },
     {
-      "date": "2024-08-09",
-      "amount": "10000",
-      "account": "Bank Mandiri",
-      "note": "Business",
-      "category": "Social Life",
-      "status": "Income",
-      "id": "02d7"
-    },
-    {
+      "id": "931e",
       "date": "2024-08-28",
-      "amount": "5990",
+      "amount": 52000,
+      "category": "Transport",
       "account": "Bank Mandiri",
-      "note": "Buy Clothes",
+      "note": "Gojek",
+      "status": "Expenses"
+    },
+    {
+      "id": "ec08",
+      "date": "2024-08-28",
+      "amount": 565000,
       "category": "Apparel",
+      "account": "Bank Mandiri",
+      "note": "Buy Clothes in HnM",
+      "status": "Expenses"
+    },
+    {
+      "id": "fb5d",
+      "date": "2024-08-28",
+      "amount": 8000,
+      "account": "Bank Mandiri",
+      "note": "Buy Noodles",
       "status": "Expenses",
-      "id": "6bed"
+      "category": "Food"
     }
   ]
 }
