@@ -76,7 +76,6 @@ const data = [
   },
 ];
 
-
 //konfigurasi data penghasilan dan pengeluaran disini
 const chartConfig = {
   income: {
@@ -89,38 +88,54 @@ const chartConfig = {
   },
 };
 
+const currentYear = new Date().getFullYear();
+
 export default function LineCharts() {
   const [chartData, setChartData] = useState("");
-  const [selectedYear, setSelectedYear] = useState("2022");
+
+  const [selectedYear, setSelectedYear] = useState(currentYear);
 
   // Function untuk menangani perubahan saat nilai dipilih
   const handleSelectChange = (value) => {
     setSelectedYear(value);
-    
   };
 
-  function fetchOneData(){
-    const oneDataYear = data.filter((el)=> el.year == selectedYear)
-    setChartData(oneDataYear[0].row)
+  function fetchOneData() {
+    const oneDataYear = data.filter((el) => el.year == selectedYear);
+    setChartData(oneDataYear[0].row);
   }
-  useEffect(()=>{
-    fetchOneData()
-  },[selectedYear])
-console.log(chartData);
-  
+  useEffect(() => {
+    fetchOneData();
+  }, [selectedYear]);
+  console.log(chartData);
+
   return (
     <div className=" w-full h-[500px] relative py-5 space-y-1">
       <Card className="">
         <CardHeader>
-          <CardTitle>Line Chart - Multiple</CardTitle>
+          <CardTitle>Wallet History</CardTitle>
           <CardDescription>January - December {selectedYear}</CardDescription>
-          <Select onValueChange={handleSelectChange} >
+          <div className="flex gap-5">
+            <div className="flex gap-1 items-center">
+              <span className="w-3 h-[50%] bg-red-700 rounded-sm"></span>
+              <p>Total Income </p>
+            </div>
+            <div className="flex gap-1 items-center">
+              <span className="w-3 h-[50%] bg-blue-900 rounded-sm"></span>
+              <p>Total Expenses </p>
+            </div>
+          </div>
+          <Select onValueChange={handleSelectChange}>
             <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Year" />
+              <SelectValue placeholder={currentYear} />
             </SelectTrigger>
             <SelectContent>
-              {data?.map((el,i) => {
-                return <SelectItem key={i} value={el.year}>{el.year}</SelectItem>;
+              {data?.map((el, i) => {
+                return (
+                  <SelectItem key={i} value={el.year}>
+                    {el.year}
+                  </SelectItem>
+                );
               })}
             </SelectContent>
           </Select>
