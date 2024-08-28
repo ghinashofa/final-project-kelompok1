@@ -10,16 +10,18 @@ export default function CardsDashboard({ transactions }) {
     // console.log(transactions, "INII ISI TRANSACTIONNYA");
     // Menghitung total income
     const totalIncome = transactions.reduce(
-        (acc, transaction) => acc + (transaction.status === "Income" ? transaction.amount : 0),
+        (acc, transaction) =>
+            acc + (transaction.status === "Income" ? transaction.amount : 0),
         0
-      );
+    );
     //   console.log(totalIncome, "INII ISI TOTAL INCOMENYA");
 
     // Menghitung total expense
     const totalExpense = transactions.reduce(
-        (acc, transaction) => acc + (transaction.status === "Expenses" ? transaction.amount : 0),
+        (acc, transaction) =>
+            acc + (transaction.status === "Expenses" ? transaction.amount : 0),
         0
-      );
+    );
 
     // const percentage = (totalExpense / totalIncome) * 100;
 

@@ -11,7 +11,7 @@
     },
     {
       "date": "2024-08-28",
-      "amount": "2300000",
+      "amount": "23000",
       "account": "Bank Mandiri",
       "note": "Buy Makeup",
       "category": "Beauty",
@@ -20,7 +20,7 @@
     },
     {
       "date": "2024-08-09",
-      "amount": "10000000",
+      "amount": "10000",
       "account": "Bank Mandiri",
       "note": "Business",
       "category": "Social Life",
@@ -28,13 +28,13 @@
       "id": "02d7"
     },
     {
-      "id": "6bed",
       "date": "2024-08-28",
-      "amount": 599000,
+      "amount": "5990",
       "account": "Bank Mandiri",
       "note": "Buy Clothes",
+      "category": "Apparel",
       "status": "Expenses",
-      "category": "Apparel"
+      "id": "6bed"
     }
   ]
 }
