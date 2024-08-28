@@ -1,13 +1,22 @@
 {
   "transaction": [
     {
-      "id": "1",
-      "date": "21/08/2024",
-      "amount": "Rp320.000",
-      "category": "Health",
+      "id": "afe4",
+      "date": "2024-08-28",
+      "amount": "Rp 7.000.000",
       "account": "Bank Mandiri",
-      "note": "Buy medicine for my daughter",
-      "status": "Income"
+      "note": "Salary",
+      "status": "Income",
+      "category": "Social Life"
+    },
+    {
+      "id": "0581",
+      "date": "2024-08-28",
+      "amount": "Rp 32.000",
+      "category": "Food",
+      "account": "Bank Mandiri",
+      "note": "Buy Breakfast",
+      "status": "Expenses"
     }
   ]
 }

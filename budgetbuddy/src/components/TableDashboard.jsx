@@ -3,6 +3,7 @@ import { ModalForm } from "./ModalForm";
 import { Button } from "@headlessui/react";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { ModalFormEdit } from "./ModalFormEdit";
 
 
 export default function TableDashboard({ transactions, setTransactions }) { // Menggunakan default parameter
@@ -132,14 +133,8 @@ export default function TableDashboard({ transactions, setTransactions }) { // M
                                                 {transaction.status}
                                             </td>
                                             <td className="relative whitespace-nowrap py-4 text-right text-sm space-x-3 font-medium sm:pr-4 lg:pr-6">
-                                                <a
-                                                    href="#"
-                                                    className="text-white bg-[#4780E8] p-2 px-6 hover:bg-blue-700 rounded-lg"
-                                                >
-                                                    Edit
-                                                </a>
+                                                <ModalFormEdit transactions={transactions} setTransactions={setTransactions}  />
                                                 <Button
-                                                    href="#"
                                                     onClick={() => handleDelete(transaction.id)}
                                                     className="text-white bg-red-500 p-2 px-6 hover:bg-red-600 rounded-lg"
                                                 >

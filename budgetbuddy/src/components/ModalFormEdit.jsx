@@ -17,7 +17,7 @@ import {
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import axios from "axios";
 
-export function ModalForm({ transactions, setTransactions }) {
+export function ModalFormEdit({ transactions, setTransactions }) {
     const [open, setOpen] = React.useState(false);
     const [status, setStatus] = React.useState("");
     const [category, setCategory] = React.useState("");
@@ -47,68 +47,56 @@ export function ModalForm({ transactions, setTransactions }) {
         setCategory(val);
     }
 
-    function handleAddTransaction(e) {
+    function handleEdit(id) {
         e.preventDefault();
-
-        const dataSelect = {
-            ...formData,
-            status: status,
-            category: category,
-        };
-
-        async function addTransaction() {
+        async function editTransaction() {
             try {
-                const response = await axios.post(
-                    "http://localhost:3000/transaction",
-                    dataSelect
+                const response = await axios.put(
+                    `http://localhost:3000/transaction/${id}`,
+                    formData
                 );
-                console.log("Transaction added successfully:", response.data);
-                setTransactions([...transactions, response.data]);
-
-                setFormData({
-                    date: "",
-                    amount: "",
-                    category: "",
-                    account: "",
-                    note: "",
-                    status: "",
-                });
-
-                setStatus(""); 
-                setCategory(""); 
+                console.log(response.data, "<< Transaction Edited");
+    
+                // Update transaksi yang di-edit dalam state transactions
+                setTransactions(transactions.map((transaction) =>
+                    transaction.id === id ? response.data : transaction
+                ));
+    
+                // Tampilkan notifikasi sukses
                 Swal.fire({
-                    position: "top-center",
+                    title: "Success",
+                    text: "Transaction has been edited successfully!",
                     icon: "success",
-                    title: "Your work has been saved",
-                    showConfirmButton: false,
-                    timer: 1500
-                  });
-
-                navigate("/");
+                });
+    
             } catch (error) {
+                console.error("Error editing transaction:", error);
+                // Tampilkan notifikasi error
                 Swal.fire({
+                    title: "Error",
+                    text: "Failed to edit the transaction.",
                     icon: "error",
-                    title: "Oops...",
-                    text: "Something went wrong!",
-                    footer: '<a href="#">Why do I have this issue?</a>'
-                  });
+                });
             }
         }
-        addTransaction();
+    
+        // Panggil fungsi untuk mengedit transaksi
+        editTransaction();
     }
 
+    
     return (
         <>
             <Button
                 onClick={handleOpen}
                 className="bg-gradient-to-r from-[#4C3BCF] via-[#5C50E7] to-[#705FF3] text-white font-semibold py-3"
             >
-                Add New Transaction
+                Edit
             </Button>
             <Dialog size="sm" open={open} handler={handleOpen} className="p-4">
                 <DialogHeader className="relative m-0 block">
                     <Typography variant="h4" color="blue-gray">
-                        Add your new transaction!
+                        Edit your new transaction!
                     </Typography>
                     <Typography className="mt-1 font-normal text-gray-600">
                         Keep your records up-to-date and organized.
@@ -123,7 +111,7 @@ export function ModalForm({ transactions, setTransactions }) {
                     </IconButton>
                 </DialogHeader>
                 <DialogBody className="space-y-4 pb-6">
-                    <form onSubmit={handleAddTransaction}>
+                    <form onSubmit={(e) => handleEdit(transactions.id)}>
                         <div>
                             <Typography
                                 variant="small"
@@ -266,14 +254,12 @@ export function ModalForm({ transactions, setTransactions }) {
                         <Button
                             type="submit"
                             onClick={handleOpen}
-                            className="ml-auto mt-5 bg-gradient-to-r from-[#4C3BCF] via-[#5C50E7] to-[#705FF3] text-white font-semibold py-3"
+                            className="ml-auto mt-3 bg-gradient-to-r from-[#4C3BCF] via-[#5C50E7] to-[#705FF3] text-white font-semibold py-3"
                         >
-                            Submit
+                            Edit
                         </Button>
                     </form>
                 </DialogBody>
-                {/* <DialogFooter>
-                    </DialogFooter> */}
             </Dialog>
         </>
     );
