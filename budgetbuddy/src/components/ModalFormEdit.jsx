@@ -17,16 +17,16 @@ import {
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import axios from "axios";
 
-export function ModalFormEdit({ transactions, setTransactions }) {
+export function ModalFormEdit({ transaction, transactions, setTransactions }) {
     const [open, setOpen] = React.useState(false);
-    const [status, setStatus] = React.useState("");
-    const [category, setCategory] = React.useState("");
+    const [category, setCategory] = React.useState(transaction.category || "");
+    const [status, setStatus] = React.useState(transaction.status || "");
     const navigate = useNavigate();
     const [formData, setFormData] = React.useState({
-        date: "",
-        amount: "",
-        account: "",
-        note: "",
+        date: transaction.date || "",
+        amount: transaction.amount || "",
+        account: transaction.account || "",
+        note: transaction.note || "",
     });
 
     const handleOpen = () => setOpen(!open);
@@ -47,20 +47,33 @@ export function ModalFormEdit({ transactions, setTransactions }) {
         setCategory(val);
     }
 
-    function handleEdit(id) {
+    function handleEdit(e, id) {
         e.preventDefault();
+        console.log("Editing transaction with ID:", id); // Pastikan ID tidak undefined
+    
         async function editTransaction() {
             try {
+                const updatedData = {
+                    ...formData,
+                    category,
+                    status,
+                };
+                // console.log(formData, "<< formData");
                 const response = await axios.put(
                     `http://localhost:3000/transaction/${id}`,
-                    formData
+                    updatedData
                 );
-                console.log(response.data, "<< Transaction Edited");
-    
-                // Update transaksi yang di-edit dalam state transactions
-                setTransactions(transactions.map((transaction) =>
-                    transaction.id === id ? response.data : transaction
-                ));
+        
+                // Cek apakah transactions adalah array
+                if (Array.isArray(transactions)) {
+                    // Update transactions yang di-edit
+                    const updatedTransactions = transactions.map((transaction) =>
+                        transaction.id === id ? response.data : transaction
+                    );
+                    setTransactions(updatedTransactions);
+                } else {
+                    console.error("Error: transactions is not an array");
+                }
     
                 // Tampilkan notifikasi sukses
                 Swal.fire({
@@ -87,12 +100,12 @@ export function ModalFormEdit({ transactions, setTransactions }) {
     
     return (
         <>
-            <Button
+            <button
                 onClick={handleOpen}
-                className="bg-gradient-to-r from-[#4C3BCF] via-[#5C50E7] to-[#705FF3] text-white font-semibold py-3"
+                className="bg-[#4a83eb] p-2 px-6 text-white font-normal rounded-lg hover:bg-[#3772df] hover:shadow- transition-all duration-200 ease-in-out"
             >
                 Edit
-            </Button>
+            </button>
             <Dialog size="sm" open={open} handler={handleOpen} className="p-4">
                 <DialogHeader className="relative m-0 block">
                     <Typography variant="h4" color="blue-gray">
@@ -111,7 +124,7 @@ export function ModalFormEdit({ transactions, setTransactions }) {
                     </IconButton>
                 </DialogHeader>
                 <DialogBody className="space-y-4 pb-6">
-                    <form onSubmit={(e) => handleEdit(transactions.id)}>
+                    <form onSubmit={(e) => handleEdit(e, transaction.id)}>
                         <div>
                             <Typography
                                 variant="small"
@@ -127,6 +140,7 @@ export function ModalFormEdit({ transactions, setTransactions }) {
                                 placeholder="eg. White Shoes"
                                 name="date"
                                 onChange={handleChange}
+                                value={formData.date}
                                 className="placeholder:opacity-100 focus:!border-t-gray-900"
                                 containerProps={{
                                     className: "!min-w-full",
@@ -149,6 +163,7 @@ export function ModalFormEdit({ transactions, setTransactions }) {
                                 className="!w-full !border-[1.5px] !border-blue-gray-200/90 !border-t-blue-gray-200/90 bg-white text-gray-800 ring-4 ring-transparent placeholder:text-gray-600 focus:!border-primary focus:!border-t-blue-gray-900 group-hover:!border-primary"
                                 placeholder="Select Category"
                                 onChange={(val) => setCategory(val)}
+                                value={category}
                                 name="category"
                                 labelProps={{
                                     className: "hidden",
@@ -175,7 +190,8 @@ export function ModalFormEdit({ transactions, setTransactions }) {
                                 <Input
                                     color="gray"
                                     size="lg"
-                                    placeholder="Rp00"
+                                    placeholder="00"
+                                    value={formData.amount}
                                     name="amount"
                                     onChange={handleChange}
                                     className="placeholder:opacity-100 focus:!border-t-gray-900"
@@ -200,6 +216,7 @@ export function ModalFormEdit({ transactions, setTransactions }) {
                                     size="lg"
                                     placeholder="Card"
                                     name="account"
+                                    value={formData.account}
                                     onChange={handleChange}
                                     className="placeholder:opacity-100 focus:!border-t-gray-900"
                                     containerProps={{
@@ -224,6 +241,7 @@ export function ModalFormEdit({ transactions, setTransactions }) {
                                 placeholder="Select Status"
                                 onChange={(val) => setStatus(val)}
                                 name="status"
+                                value={status}
                                 labelProps={{
                                     className: "hidden",
                                 }}
@@ -244,6 +262,7 @@ export function ModalFormEdit({ transactions, setTransactions }) {
                             <Input
                                 onChange={handleChange}
                                 name="note"
+                                value={formData.note}
                                 placeholder="eg. This is a white shoes with a comfortable sole."
                                 className="!w-full !border-[1.5px] !border-blue-gray-200/90 !border-t-blue-gray-200/90 bg-white text-gray-600 ring-4 ring-transparent focus:!border-primary focus:!border-t-blue-gray-900 group-hover:!border-primary"
                                 labelProps={{

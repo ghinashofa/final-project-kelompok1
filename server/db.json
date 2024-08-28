@@ -1,22 +1,40 @@
 {
   "transaction": [
     {
-      "id": "afe4",
       "date": "2024-08-28",
-      "amount": "Rp 7.000.000",
-      "account": "Bank Mandiri",
+      "amount": "450000",
+      "account": "Bank BCA",
       "note": "Salary",
+      "category": "Social Life",
+      "status": "Income",
+      "id": "3aa0"
+    },
+    {
+      "id": "29d0",
+      "date": "2024-08-28",
+      "amount": 230000,
+      "account": "Bank Mandiri",
+      "note": "Buy Makeup",
+      "status": "Expenses",
+      "category": "Beauty"
+    },
+    {
+      "id": "02d7",
+      "date": "2024-08-09",
+      "amount": 3200000,
+      "account": "Bank Mandiri",
+      "note": "Business",
       "status": "Income",
       "category": "Social Life"
     },
     {
-      "id": "0581",
+      "id": "6bed",
       "date": "2024-08-28",
-      "amount": "Rp 32.000",
-      "category": "Food",
+      "amount": 599000,
       "account": "Bank Mandiri",
-      "note": "Buy Breakfast",
-      "status": "Expenses"
+      "note": "Buy Clothes",
+      "status": "Expenses",
+      "category": "Apparel"
     }
   ]
 }

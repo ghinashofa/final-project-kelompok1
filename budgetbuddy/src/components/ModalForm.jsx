@@ -186,8 +186,9 @@ export function ModalForm({ transactions, setTransactions }) {
                                 </Typography>
                                 <Input
                                     color="gray"
+                                    type="number"
                                     size="lg"
-                                    placeholder="Rp00"
+                                    placeholder="00"
                                     name="amount"
                                     onChange={handleChange}
                                     className="placeholder:opacity-100 focus:!border-t-gray-900"
