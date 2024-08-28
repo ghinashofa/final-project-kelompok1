@@ -3,7 +3,6 @@ import logo from "../assets/logo.png";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
 import {
     Dialog,
     DialogBackdrop,
@@ -33,8 +32,7 @@ import {
 
 import Cards from "../components/CardsDashboard";
 import TableDashboard from "../components/TableDashboard";
-import CardsDashboard from "../components/CardsDashboard";
-import LineCharts from "@/components/LineCharts";
+import TableTransaction from "@/components/TableTransaction";
 
 const navigation = [
     { name: "Dashboard", href: "#", icon: HomeIcon, current: true },
@@ -62,7 +60,7 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
 }
 
-export default function Dashboard() {
+export default function Transaction() {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [transactions, setTransactions] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -364,25 +362,14 @@ export default function Dashboard() {
                                     </div>
                                 </div>
                             )}
-                            <CardsDashboard transactions={transactions} />
-                            <LineCharts />
 
                             {loading ? (
                                 <p>Loading...</p>
                             ) : (
-                                <div className="mt-6 flex flex-col">
-                                    <div className="flex justify-end">
-                                        <Link to={"/transaction"}>
-                                            <button className="px-4 py-2 bg-none text-[#4C3BCF] hover:shadow-md rounded-md">
-                                                See more
-                                            </button>
-                                        </Link>
-                                    </div>
-                                    <TableDashboard
-                                        transactions={transactions}
-                                        setTransactions={setTransactions}
-                                    />
-                                </div>
+                                <TableTransaction
+                                    transactions={transactions}
+                                    setTransactions={setTransactions}
+                                />
                             )}
                         </div>
                     </main>

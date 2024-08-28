@@ -73,7 +73,7 @@ export function ModalForm({ transactions, setTransactions }) {
                     dataSelect 
                 );
                 console.log("Transaction added successfully:", response.data);
-                setTransactions([...transactions, response.data]);
+                setTransactions([response.data, ...transactions]);
 
                 setFormData({
                     date: "",
