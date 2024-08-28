@@ -365,7 +365,7 @@ export default function Dashboard() {
                                     </div>
                                 </div>
                             )}
-                            <CardsDashboard />
+                            <CardsDashboard transactions={transactions} />
 
                             {loading ? (
                                 <p>Loading...</p>

@@ -44,6 +44,15 @@
       "account": "Bank Mandiri",
       "note": "Buy Clothes in HnM",
       "status": "Expenses"
+    },
+    {
+      "id": "fb5d",
+      "date": "2024-08-28",
+      "amount": 8000,
+      "account": "Bank Mandiri",
+      "note": "Buy Noodles",
+      "status": "Expenses",
+      "category": "Food"
     }
   ]
 }
