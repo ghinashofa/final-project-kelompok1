@@ -49,7 +49,7 @@ export function ModalFormEdit({ transaction, transactions, setTransactions }) {
 
     function handleEdit(e, id) {
         e.preventDefault();
-        console.log("Editing transaction with ID:", id); // Pastikan ID tidak undefined
+        console.log("Editing transaction with ID:", id); 
     
         async function editTransaction() {
             try {
@@ -58,13 +58,12 @@ export function ModalFormEdit({ transaction, transactions, setTransactions }) {
                     category,
                     status,
                 };
-                // console.log(formData, "<< formData");
+
                 const response = await axios.put(
                     `http://localhost:3000/transaction/${id}`,
                     updatedData
                 );
         
-                // Cek apakah transactions adalah array
                 if (Array.isArray(transactions)) {
                     // Update transactions yang di-edit
                     const updatedTransactions = transactions.map((transaction) =>
@@ -75,7 +74,6 @@ export function ModalFormEdit({ transaction, transactions, setTransactions }) {
                     console.error("Error: transactions is not an array");
                 }
     
-                // Tampilkan notifikasi sukses
                 Swal.fire({
                     title: "Success",
                     text: "Transaction has been edited successfully!",
@@ -84,7 +82,7 @@ export function ModalFormEdit({ transaction, transactions, setTransactions }) {
     
             } catch (error) {
                 console.error("Error editing transaction:", error);
-                // Tampilkan notifikasi error
+
                 Swal.fire({
                     title: "Error",
                     text: "Failed to edit the transaction.",
@@ -93,7 +91,6 @@ export function ModalFormEdit({ transaction, transactions, setTransactions }) {
             }
         }
     
-        // Panggil fungsi untuk mengedit transaksi
         editTransaction();
     }
 
@@ -195,6 +192,7 @@ export function ModalFormEdit({ transaction, transactions, setTransactions }) {
                                     name="amount"
                                     onChange={handleChange}
                                     className="placeholder:opacity-100 focus:!border-t-gray-900"
+                                    style={{borderTop: "1px solid #B0BFC5"}}
                                     containerProps={{
                                         className: "!min-w-full",
                                     }}
@@ -219,6 +217,7 @@ export function ModalFormEdit({ transaction, transactions, setTransactions }) {
                                     value={formData.account}
                                     onChange={handleChange}
                                     className="placeholder:opacity-100 focus:!border-t-gray-900"
+                                    style={{borderTop: "1px solid #B0BFC5"}}
                                     containerProps={{
                                         className: "!min-w-full",
                                     }}
@@ -232,7 +231,7 @@ export function ModalFormEdit({ transaction, transactions, setTransactions }) {
                             <Typography
                                 variant="small"
                                 color="blue-gray"
-                                className="mb-2 text-left font-medium"
+                                className="mb-2 mt-3 text-left font-medium"
                             >
                                 Status
                             </Typography>
@@ -255,7 +254,7 @@ export function ModalFormEdit({ transaction, transactions, setTransactions }) {
                             <Typography
                                 variant="small"
                                 color="blue-gray"
-                                className="mb-2 text-left font-medium"
+                                className="mb-2 mt-3 text-left font-medium"
                             >
                                 Notes (Optional)
                             </Typography>
@@ -273,7 +272,7 @@ export function ModalFormEdit({ transaction, transactions, setTransactions }) {
                         <Button
                             type="submit"
                             onClick={handleOpen}
-                            className="ml-auto mt-3 bg-gradient-to-r from-[#4C3BCF] via-[#5C50E7] to-[#705FF3] text-white font-semibold py-3"
+                            className="ml-auto mt-5 bg-gradient-to-r from-[#4C3BCF] via-[#5C50E7] to-[#705FF3] text-white font-semibold py-3"
                         >
                             Edit
                         </Button>
