@@ -115,7 +115,7 @@ export default function TableBudgeting({ budgeting, setBudgeting }) {
                                             <td className="relative whitespace-nowrap py-4 text-right text-sm space-x-3 font-medium sm:pr-4 lg:pr-6">
                                                 <ModalFormBudgetingEdit budgeting={budgeting} setBudgeting={setBudgeting}  />
                                                 <Button
-                                                    onClick={() => handleDelete(Budgeting.id)}
+                                                    onClick={() => handleDelete(budgeting.id)}
                                                     className="text-white bg-red-500 p-2 px-6 hover:bg-red-600 rounded-lg hover:shadow-lg transition-all duration-200 ease-in-out"
                                                 >
                                                     Delete
