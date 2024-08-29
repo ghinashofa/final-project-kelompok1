@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+// import {
+//   Select,
+//   SelectContent,
+//   SelectItem,
+//   SelectTrigger,
+//   SelectValue,
+// } from "@/components/ui/select";
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
 import {
   Card,
@@ -125,7 +125,7 @@ export default function LineCharts() {
               <p>Total Expenses </p>
             </div>
           </div>
-          <Select onValueChange={handleSelectChange}>
+          {/* <Select onValueChange={handleSelectChange}>
             <SelectTrigger className="w-[180px]">
               <SelectValue placeholder={currentYear} />
             </SelectTrigger>
@@ -138,7 +138,7 @@ export default function LineCharts() {
                 );
               })}
             </SelectContent>
-          </Select>
+          </Select> */}
         </CardHeader>
         <CardContent>
           <ChartContainer className="h-[300px] w-full" config={chartConfig}>
