@@ -102,13 +102,6 @@
   ],
   "budgeting": [
     {
-      "date": "2024-08-12",
-      "amount": "100000",
-      "category": "Clothing",
-      "account": "BCA",
-      "id": "8d7f"
-    },
-    {
       "id": "e1f9",
       "date": "2024-08-07",
       "amount": "10000",

@@ -40,7 +40,7 @@ const navigation = [
     { name: "Dashboard", href: "#", icon: HomeIcon, current: true },
     {
         name: "Budgeting",
-        href: "#",
+        href: "/budgeting",
         icon: DocumentDuplicateIcon,
         current: false,
     },
