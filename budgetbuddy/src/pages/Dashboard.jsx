@@ -39,7 +39,7 @@ const navigation = [
     { name: "Dashboard", href: "/", icon: HomeIcon, current: true },
     {
         name: "Budgeting",
-        href: "#",
+        href: "/budgeting",
         icon: DocumentDuplicateIcon,
         current: false,
     },
@@ -67,14 +67,19 @@ export default function Dashboard() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
+
     useEffect(() => {
         async function getTransactions() {
+            let transactions = [];
             try {
                 setLoading(true);
                 const response = await axios.get(
                     "http://localhost:3000/transaction"
                 );
-                setTransactions(response.data);
+                transactions = response.data.sort(function (a, b) {
+                    return Date.parse(b.date) - Date.parse(a.date);
+                });
+                setTransactions(transactions);
                 console.log(response, "<< response");
             } catch (error) {
                 setError(error);
@@ -84,6 +89,8 @@ export default function Dashboard() {
         }
         getTransactions();
     }, []);
+
+
 
     return (
         <>
@@ -365,6 +372,7 @@ export default function Dashboard() {
                             )}
                             <CardsDashboard transactions={transactions} />
                             <LineCharts transaction={transactions} />
+
 
                             {loading ? (
                                 <p>Loading...</p>
