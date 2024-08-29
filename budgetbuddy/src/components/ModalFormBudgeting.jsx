@@ -80,7 +80,7 @@ export default function ModalFormBudgeting({ budgeting, setBudgeting }) {
 
   return (
     <>
-      <Button onClick={handleOpen} variant="gradient">
+      <Button onClick={handleOpen} className="bg-gradient-to-r from-[#4C3BCF] via-[#5C50E7] to-[#705FF3] text-white font-semibold py-3">
         Add Budgeting
       </Button>
       <Dialog size="sm" open={open} handler={handleOpen} className="p-4">
