@@ -371,9 +371,6 @@ export default function Dashboard() {
                                     </div>
                                 </div>
                             )}
-                            <CardsDashboard transactions={transactions} />
-                            <LineCharts />
-
                             {loading ? (
                                 <p>Loading...</p>
                             ) : (

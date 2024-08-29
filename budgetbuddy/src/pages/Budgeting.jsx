@@ -1,278 +1,373 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import logo from "../assets/logo.png";
 import axios from "axios";
+import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import {
-  Input,
-  Option,
-  Select,
-  Button,
-  Dialog,
-  Typography,
-  DialogBody,
-  DialogHeader,
-  DialogFooter,
-  IconButton,
-} from "@material-tailwind/react";
-import { XMarkIcon } from "@heroicons/react/24/outline";
-import Swal from "sweetalert2";
+    Dialog,
+    DialogBackdrop,
+    DialogPanel,
+    Menu,
+    MenuButton,
+    MenuItem,
+    MenuItems,
+    TransitionChild,
+} from "@headlessui/react";
+import {
+    Bars3Icon,
+    BellIcon,
+    CalendarIcon,
+    ChartPieIcon,
+    Cog6ToothIcon,
+    DocumentDuplicateIcon,
+    FolderIcon,
+    HomeIcon,
+    UsersIcon,
+    XMarkIcon,
+} from "@heroicons/react/24/outline";
+import {
+    ChevronDownIcon,
+    MagnifyingGlassIcon,
+} from "@heroicons/react/20/solid";
 
-const Budgeting = () => {
-  const [open, setOpen] = useState(false);
-  const [data, setData] = useState([]);
-  const [form, setForm] = useState({
-    date: "",
-    amount: "",
-    category: "",
-    account: ""
-  });
-  const [errors, setErrors] = useState({});
-  const [formMethod, setFormMethod] = useState("add");
-  const [currentId, setCurrentId] = useState("");
+import Cards from "../components/CardsDashboard";
+import CardsDashboard from "../components/CardsDashboard";
+import LineCharts from "@/components/LineCharts";
+import TableBudgeting from "@/components/TableBudgeting";
 
-  const handleOpen = () => setOpen(!open);
+const navigation = [
+    { name: "Dashboard", href: "#", icon: HomeIcon, current: true },
+    {
+        name: "Budgeting",
+        href: "/budgeting",
+        icon: DocumentDuplicateIcon,
+        current: false,
+    },
+    { name: "Transaction", href: "#", icon: FolderIcon, current: false },
+    { name: "Bills & payment", href: "#", icon: CalendarIcon, current: false },
+    { name: "Reports", href: "#", icon: ChartPieIcon, current: false },
+];
+const teams = [
+    { id: 1, name: "Heroicons", href: "#", initial: "H", current: false },
+    { id: 2, name: "Tailwind Labs", href: "#", initial: "T", current: false },
+    { id: 3, name: "Workcation", href: "#", initial: "W", current: false },
+];
+const userNavigation = [
+    { name: "Your profile", href: "#" },
+    { name: "Sign out", href: "#" },
+];
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setForm((prevForm) => ({
-      ...prevForm,
-      [name]: value,
-    }));
-  };
+function classNames(...classes) {
+    return classes.filter(Boolean).join(" ");
+}
 
-  const handleSelectChange = (value) => {
-    setForm((prevForm) => ({
-      ...prevForm,
-      category: value,
-    }));
-  };
+export default function Budgeting() {
+    const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [Budgeting, setBudgeting] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
-  const validateForm = () => {
-    const newErrors = {};
-    if (!form.date) newErrors.date = "Date is required";
-    if (!form.amount) newErrors.amount = "Amount is required";
-    if (!form.category) newErrors.category = "Category is required";
-    if (!form.account) newErrors.account = "Account is required";
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!validateForm()) return;
+    useEffect(() => {
+        async function getBudgeting() {
+            let Budgeting = [];
+            try {
+                setLoading(true);
+                const response = await axios.get(
+                    "http://localhost:3000/budgeting"
+                );
+                Budgeting = response.data.sort(function (a, b) {
+                    return Date.parse(b.date) - Date.parse(a.date);
+                });
+                setBudgeting(Budgeting);
+                console.log(response, "<< response");
+            } catch (error) {
+                setError(error);
+            } finally {
+                setLoading(false);
+            }
+        }
+        getBudgeting();
+    }, []);
 
-    try {
-      if (formMethod === "add") {
-        await axios.post("http://localhost:3000/budgeting", form);
-        Swal.fire("Success", "Transaction added successfully", "success");
-      } else if (formMethod === "edit") {
-        await axios.put(`http://localhost:3000/budgeting/${currentId}`, form);
-        Swal.fire("Success", "Transaction updated successfully", "success");
-      }
-      fetchBudgetingData();
-      handleOpen();
-      setForm({
-        date: "",
-        amount: "",
-        category: "",
-        account: ""
-      });
-      setFormMethod("add");
-    } catch (error) {
-      console.error("Error handling form:", error);
-      Swal.fire("Error", "An error occurred while processing your request", "error");
-    }
-  };
 
-  const handleEdit = (id) => {
-    const item = data.find((entry) => entry.id === id);
-    setForm({
-      date: item.date,
-      amount: item.amount,
-      category: item.category,
-      account: item.account
-    });
-    setCurrentId(id);
-    setFormMethod("edit");
-    handleOpen();
-  };
 
-  const handleDelete = async (id) => {
-    try {
-      await axios.delete(`http://localhost:3000/budgeting/${id}`);
-      Swal.fire("Success", "Transaction deleted successfully", "success");
-      fetchBudgetingData();
-    } catch (error) {
-      console.error("Error deleting transaction:", error);
-      Swal.fire("Error", "An error occurred while deleting the transaction", "error");
-    }
-  };
+    return (
+        <>
+            <div>
+                <Dialog
+                    open={sidebarOpen}
+                    onClose={setSidebarOpen}
+                    className="relative z-50 lg:hidden"
+                >
+                    <DialogBackdrop
+                        transition
+                        className="fixed inset-0 bg-gray-900/80 transition-opacity duration-300 ease-linear data-[closed]:opacity-0"
+                    />
 
-  const fetchBudgetingData = async () => {
-    try {
-      const response = await axios.get("http://localhost:3000/budgeting");
-      setData(response.data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
+                    <div className="fixed inset-0 flex">
+                        <DialogPanel
+                            transition
+                            className="relative mr-16 flex w-full max-w-xs flex-1 transform transition duration-300 ease-in-out data-[closed]:-translate-x-full"
+                        >
+                            <TransitionChild>
+                                <div className="absolute left-full top-0 flex w-16 justify-center pt-5 duration-300 ease-in-out data-[closed]:opacity-0">
+                                    <button
+                                        type="button"
+                                        onClick={() => setSidebarOpen(false)}
+                                        className="-m-2.5 p-2.5"
+                                    >
+                                        <span className="sr-only">
+                                            Close sidebar
+                                        </span>
+                                        <XMarkIcon
+                                            aria-hidden="true"
+                                            className="h-6 w-6 text-white"
+                                        />
+                                    </button>
+                                </div>
+                            </TransitionChild>
+                            {/* Sidebar component, swap this element with another sidebar if you like */}
+                            <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4">
+                                <div className="flex h-16 shrink-0 items-center">
+                                    <img
+                                        alt="BudgetBuddy"
+                                        src={logo}
+                                        className="h-8 w-auto"
+                                    />
+                                </div>
+                                <nav className="flex flex-1 flex-col">
+                                    <ul
+                                        role="list"
+                                        className="flex flex-1 flex-col gap-y-7"
+                                    >
+                                        <li>
+                                            <ul
+                                                role="list"
+                                                className="-mx-2 space-y-1"
+                                            >
+                                                {navigation.map((item) => (
+                                                    <li key={item.name}>
+                                                        <a
+                                                            href={item.href}
+                                                            className={classNames(
+                                                                item.current
+                                                                    ? "bg-gray-50 text-indigo-600"
+                                                                    : "text-gray-700 hover:bg-[#EEECFB] hover:text-[#4C3BCF]",
+                                                                "group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6"
+                                                            )}
+                                                        >
+                                                            <item.icon
+                                                                aria-hidden="true"
+                                                                className={classNames(
+                                                                    item.current
+                                                                        ? "text-indigo-600"
+                                                                        : "text-gray-400 group-hover:text-indigo-600",
+                                                                    "h-6 w-6 shrink-0"
+                                                                )}
+                                                            />
+                                                            {item.name}
+                                                        </a>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </li>
+                                        <li className="mt-auto">
+                                            <a
+                                                href="#"
+                                                className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-[#EEECFB] hover:text-[#4C3BCF]"
+                                            >
+                                                <Cog6ToothIcon
+                                                    aria-hidden="true"
+                                                    className="h-6 w-6 shrink-0 text-gray-400 group-hover:text-indigo-600"
+                                                />
+                                                Settings
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </DialogPanel>
+                    </div>
+                </Dialog>
 
-  useEffect(() => {
-    fetchBudgetingData();
-  }, []);
+                {/* Static sidebar for desktop */}
+                <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
+                    {/* Sidebar component, swap this element with another sidebar if you like */}
+                    <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6 pb-4">
+                        <div className="flex h-16 shrink-0 items-center gap-3">
+                            <img
+                                alt="Your Company"
+                                src={logo}
+                                className="h-8 w-auto"
+                            />
+                            <p className="logo font-semibold text-lg">
+                                BudgetBuddy
+                            </p>
+                        </div>
+                        <nav className="flex flex-1 flex-col">
+                            <ul
+                                role="list"
+                                className="flex flex-1 flex-col gap-y-7"
+                            >
+                                <li>
+                                    <ul role="list" className="-mx-2 space-y-1">
+                                        {navigation.map((item) => (
+                                            <li key={item.name}>
+                                                <a
+                                                    href={item.href}
+                                                    className={classNames(
+                                                        item.current
+                                                            ? "bg-[#EEECFB] text-indigo-600 border border-[#CDC8F2]"
+                                                            : "text-gray-600 hover:bg-[#EEECFB] hover:text-[#4C3BCF]",
+                                                        "group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6"
+                                                    )}
+                                                >
+                                                    <item.icon
+                                                        aria-hidden="true"
+                                                        className={classNames(
+                                                            item.current
+                                                                ? "text-indigo-600"
+                                                                : "text-gray-400 group-hover:text-indigo-600",
+                                                            "h-6 w-6 shrink-0"
+                                                        )}
+                                                    />
+                                                    {item.name}
+                                                </a>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </li>
+                                <li className="mt-auto">
+                                    <a
+                                        href="#"
+                                        className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-[#EEECFB] hover:text-[#4C3BCF]"
+                                    >
+                                        <Cog6ToothIcon
+                                            aria-hidden="true"
+                                            className="h-6 w-6 shrink-0 text-gray-400 group-hover:text-indigo-600"
+                                        />
+                                        Settings
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
 
-  return (
-    <div className="p-6">
-      <Button onClick={handleOpen} variant="gradient">
-        Add Transaction
-      </Button>
-      <Dialog size="sm" open={open} handler={handleOpen} className="p-4">
-        <DialogHeader className="relative m-0 block">
-          <Typography variant="h4" color="blue-gray">
-            {formMethod === "add" ? "Add Transaction" : "Edit Transaction"}
-          </Typography>
-          <IconButton
-            size="sm"
-            variant="text"
-            className="!absolute right-3.5 top-3.5"
-            onClick={handleOpen}
-          >
-            <XMarkIcon className="h-4 w-4 stroke-2" />
-          </IconButton>
-        </DialogHeader>
-        <DialogBody className="space-y-4 pb-6">
-          <div>
-            <Typography
-              variant="small"
-              color="blue-gray"
-              className="mb-2 text-left font-medium"
-            >
-              Date
-            </Typography>
-            <Input
-              type="date"
-              name="date"
-              value={form.date}
-              onChange={handleChange}
-              className="placeholder:opacity-100 focus:!border-t-gray-900"
-            />
-            {errors.date && <Typography color="red">{errors.date}</Typography>}
-          </div>
-          <div>
-            <Typography
-              variant="small"
-              color="blue-gray"
-              className="mb-2 text-left font-medium"
-            >
-              Amount
-            </Typography>
-            <Input
-              type="number"
-              name="amount"
-              value={form.amount}
-              onChange={handleChange}
-              className="placeholder:opacity-100 focus:!border-t-gray-900"
-            />
-            {errors.amount && <Typography color="red">{errors.amount}</Typography>}
-          </div>
-          <div>
-            <Typography
-              variant="small"
-              color="blue-gray"
-              className="mb-2 text-left font-medium"
-            >
-              Category
-            </Typography>
-            <Select
-              value={form.category}
-              onChange={(value) => handleSelectChange(value)}
-              className="!w-full !border-[1.5px] !border-blue-gray-200/90 !border-t-blue-gray-200/90 bg-white text-gray-800 ring-4 ring-transparent placeholder:text-gray-600 focus:!border-primary focus:!border-t-blue-gray-900 group-hover:!border-primary"
-            >
-              <Option value="">Select a category</Option>
-              <Option value="Clothing">Clothing</Option>
-              <Option value="Fashion">Fashion</Option>
-              <Option value="Watches">Watches</Option>
-            </Select>
-            {errors.category && <Typography color="red">{errors.category}</Typography>}
-          </div>
-          <div>
-            <Typography
-              variant="small"
-              color="blue-gray"
-              className="mb-2 text-left font-medium"
-            >
-              Account
-            </Typography>
-            <Input
-              type="text"
-              name="account"
-              value={form.account}
-              onChange={handleChange}
-              className="placeholder:opacity-100 focus:!border-t-gray-900"
-            />
-            {errors.account && <Typography color="red">{errors.account}</Typography>}
-          </div>
-        </DialogBody>
-        <DialogFooter>
-          <Button
-            variant="gradient"
-            onClick={handleSubmit}
-            className="mr-1"
-          >
-            {formMethod === "add" ? "Submit" : "Update"}
-          </Button>
-          <Button
-            variant="text"
-            color="red"
-            onClick={handleOpen}
-          >
-            Cancel
-          </Button>
-        </DialogFooter>
-      </Dialog>
-      <div className="mt-6">
-        <Typography variant="h6" color="blue-gray">
-          Transactions
-        </Typography>
-        <table className="min-w-full mt-4 border border-gray-200">
-          <thead>
-            <tr>
-              <th className="border-b border-gray-200 px-4 py-2 text-left">Date</th>
-              <th className="border-b border-gray-200 px-4 py-2 text-left">Amount</th>
-              <th className="border-b border-gray-200 px-4 py-2 text-left">Category</th>
-              <th className="border-b border-gray-200 px-4 py-2 text-left">Account</th>
-              <th className="border-b border-gray-200 px-4 py-2 text-left">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.map((item) => (
-              <tr key={item.id}>
-                <td className="border-b border-gray-200 px-4 py-2">{item.date}</td>
-                <td className="border-b border-gray-200 px-4 py-2">{item.amount}</td>
-                <td className="border-b border-gray-200 px-4 py-2">{item.category}</td>
-                <td className="border-b border-gray-200 px-4 py-2">{item.account}</td>
-                <td className="border-b border-gray-200 px-4 py-2">
-                  <Button
-                    size="sm"
-                    color="blue"
-                    onClick={() => handleEdit(item.id)}
-                    className="mr-2"
-                  >
-                    Edit
-                  </Button>
-                  <Button
-                    size="sm"
-                    color="red"
-                    onClick={() => handleDelete(item.id)}
-                  >
-                    Delete
-                  </Button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
-};
+                <div className="lg:pl-72">
+                    <div className="sticky top-0 z-40 flex flex-1 self-stretch items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:gap-x-6 lg:px-8">
+                        <button
+                            type="button"
+                            onClick={() => setSidebarOpen(true)}
+                            className="-m-2.5 p-2.5 text-gray-700 lg:hidden"
+                        >
+                            <span className="sr-only">Open sidebar</span>
+                            <Bars3Icon aria-hidden="true" className="h-6 w-6" />
+                        </button>
 
-export default Budgeting;
+                        {/* Separator */}
+                        <div
+                            aria-hidden="true"
+                            className="h-6 w-px bg-gray-200 lg:hidden"
+                        />
+
+                        <div
+                            className="flex flex-1 gap-x-4 self-stretch lg:gap-x-6 items-center"
+                            style={{ height: "80px" }}
+                        >
+                            <div className="relative flex flex-1 flex-col">
+                                <h3 className="text-base font-semibold">
+                                    Dashboard
+                                </h3>
+                                <p className="text-sm font-normal text-[#AEAEAE]">
+                                    Take a look at your latest transactions and
+                                    financial trends.
+                                </p>
+                            </div>
+                            <div className="flex items-center gap-x-4 lg:gap-x-6">
+                                <button
+                                    type="button"
+                                    className="-m-2.5 p-2.5 text-gray-400 hover:text-gray-500"
+                                >
+                                    <span className="sr-only">
+                                        View notifications
+                                    </span>
+                                    <BellIcon
+                                        aria-hidden="true"
+                                        className="h-6 w-6"
+                                    />
+                                </button>
+
+                                {/* Separator */}
+                                <div
+                                    aria-hidden="true"
+                                    className="hidden lg:block lg:h-6 lg:w-px lg:bg-[#EEECFB]"
+                                />
+
+                                {/* Profile dropdown */}
+                                <Menu as="div" className="relative">
+                                    <MenuButton className="-m-1.5 flex items-center p-1.5">
+                                        <span className="sr-only">
+                                            Open user menu
+                                        </span>
+                                        <img
+                                            alt=""
+                                            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                            className="h-8 w-8 rounded-full bg-[#EEECFB]"
+                                        />
+                                        <span className="hidden lg:flex lg:items-center">
+                                            <span
+                                                aria-hidden="true"
+                                                className="ml-4 text-sm font-semibold leading-6 text-gray-900"
+                                            >
+                                                Tom Cook
+                                            </span>
+                                            <ChevronDownIcon
+                                                aria-hidden="true"
+                                                className="ml-2 h-5 w-5 text-gray-400"
+                                            />
+                                        </span>
+                                    </MenuButton>
+                                    <MenuItems
+                                        transition
+                                        className="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
+                                    >
+                                        {userNavigation.map((item) => (
+                                            <MenuItem key={item.name}>
+                                                <a
+                                                    href={item.href}
+                                                    className="block px-3 py-1 text-sm leading-6 text-gray-900 data-[focus]:bg-[#EEECFB]"
+                                                >
+                                                    {item.name}
+                                                </a>
+                                            </MenuItem>
+                                        ))}
+                                    </MenuItems>
+                                </Menu>
+                            </div>
+                        </div>
+                    </div>
+                    {/* ====== main content ====== */}
+                    <main className="py-10 bg-[#F5F7FA]">
+                        <div className="px-4 sm:px-6 lg:px-8">
+                            {loading ? (
+                                <p>Loading...</p>
+                            ) : (
+                                <div className="mt-6 flex flex-col">
+                                    <div className="flex justify-end">
+                                    </div>
+                                    <TableBudgeting
+                                        Budgeting={Budgeting}
+                                        setBudgeting={setBudgeting}
+                                    />
+                                </div>
+                            )}
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </>
+    );
+}
