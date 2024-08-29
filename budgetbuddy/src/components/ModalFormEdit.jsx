@@ -1,5 +1,5 @@
 import React from "react";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import {
     Input,
@@ -49,8 +49,8 @@ export function ModalFormEdit({ transaction, transactions, setTransactions }) {
 
     function handleEdit(e, id) {
         e.preventDefault();
-        console.log("Editing transaction with ID:", id); 
-    
+        console.log("Editing transaction with ID:", id);
+
         async function editTransaction() {
             try {
                 const updatedData = {
@@ -63,23 +63,23 @@ export function ModalFormEdit({ transaction, transactions, setTransactions }) {
                     `http://localhost:3000/transaction/${id}`,
                     updatedData
                 );
-        
+
                 if (Array.isArray(transactions)) {
                     // Update transactions yang di-edit
-                    const updatedTransactions = transactions.map((transaction) =>
-                        transaction.id === id ? response.data : transaction
+                    const updatedTransactions = transactions.map(
+                        (transaction) =>
+                            transaction.id === id ? response.data : transaction
                     );
                     setTransactions(updatedTransactions);
                 } else {
                     console.error("Error: transactions is not an array");
                 }
-    
+
                 Swal.fire({
                     title: "Success",
                     text: "Transaction has been edited successfully!",
                     icon: "success",
                 });
-    
             } catch (error) {
                 console.error("Error editing transaction:", error);
 
@@ -90,11 +90,10 @@ export function ModalFormEdit({ transaction, transactions, setTransactions }) {
                 });
             }
         }
-    
+
         editTransaction();
     }
 
-    
     return (
         <>
             <button
@@ -145,7 +144,7 @@ export function ModalFormEdit({ transaction, transactions, setTransactions }) {
                                 labelProps={{
                                     className: "hidden",
                                 }}
-                                style={{borderTop: "1px solid"}}
+                                style={{ borderTop: "1px solid" }}
                             />
                         </div>
                         <div>
@@ -167,8 +166,8 @@ export function ModalFormEdit({ transaction, transactions, setTransactions }) {
                                 }}
                             >
                                 <Option value="Food">Food</Option>
-                                <Option value="Social Life">Salary</Option>
-                                <Option value="Social Life">Business</Option>
+                                <Option value="Salary">Salary</Option>
+                                <Option value="Business">Business</Option>
                                 <Option value="Beauty">Beauty</Option>
                                 <Option value="Apparel">Apparel</Option>
                                 <Option value="Transport">Transport</Option>
@@ -192,7 +191,7 @@ export function ModalFormEdit({ transaction, transactions, setTransactions }) {
                                     name="amount"
                                     onChange={handleChange}
                                     className="placeholder:opacity-100 focus:!border-t-gray-900"
-                                    style={{borderTop: "1px solid #B0BFC5"}}
+                                    style={{ borderTop: "1px solid #B0BFC5" }}
                                     containerProps={{
                                         className: "!min-w-full",
                                     }}
@@ -217,7 +216,7 @@ export function ModalFormEdit({ transaction, transactions, setTransactions }) {
                                     value={formData.account}
                                     onChange={handleChange}
                                     className="placeholder:opacity-100 focus:!border-t-gray-900"
-                                    style={{borderTop: "1px solid #B0BFC5"}}
+                                    style={{ borderTop: "1px solid #B0BFC5" }}
                                     containerProps={{
                                         className: "!min-w-full",
                                     }}

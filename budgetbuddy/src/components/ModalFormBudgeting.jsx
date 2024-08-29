@@ -146,8 +146,8 @@ export default function ModalFormBudgeting({ Budgeting, setBudgeting }) {
               className="!w-full !border-[1.5px] !border-blue-gray-200/90 !border-t-blue-gray-200/90 bg-white text-gray-800 ring-4 ring-transparent placeholder:text-gray-600 focus:!border-primary focus:!border-t-blue-gray-900 group-hover:!border-primary"
             >
               <Option value="Food">Food</Option>
-              <Option value="Social Life">Salary</Option>
-              <Option value="Social Life">Business</Option>
+              <Option value="Salary">Salary</Option>
+              <Option value="Business">Business</Option>
               <Option value="Beauty">Beauty</Option>
               <Option value="Apparel">Apparel</Option>
               <Option value="Transport">Transport</Option>

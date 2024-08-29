@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 import axios from "axios";
 import {
     Input,
@@ -15,7 +15,11 @@ import {
 } from "@material-tailwind/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
-export function ModalFormBudgetingEdit({ budgeting, budgetings, setBudgetings }) {
+export function ModalFormBudgetingEdit({
+    budgeting,
+    budgetings,
+    setBudgetings,
+}) {
     const [open, setOpen] = useState(false);
     const [formData, setFormData] = useState({
         date: "",
@@ -68,14 +72,23 @@ export function ModalFormBudgetingEdit({ budgeting, budgetings, setBudgetings })
         if (!validateForm()) return;
 
         try {
-            const response = await axios.patch(`http://localhost:3000/budgeting/${budgeting.id}`, formData);
-            const updatedBudgetings = budgetings.map(b => b.id === budgeting.id ? response.data : b);
+            const response = await axios.patch(
+                `http://localhost:3000/budgeting/${budgeting.id}`,
+                formData
+            );
+            const updatedBudgetings = budgetings.map((b) =>
+                b.id === budgeting.id ? response.data : b
+            );
             setBudgetings(updatedBudgetings);
             Swal.fire("Success", "Budgeting updated successfully", "success");
             handleOpen();
         } catch (error) {
             console.error("Error updating budgeting:", error);
-            Swal.fire("Error", "An error occurred while updating your budgeting", "error");
+            Swal.fire(
+                "Error",
+                "An error occurred while updating your budgeting",
+                "error"
+            );
         }
     };
 
@@ -107,7 +120,11 @@ export function ModalFormBudgetingEdit({ budgeting, budgetings, setBudgetings })
                 <DialogBody className="space-y-4 pb-6">
                     <form onSubmit={handleEdit}>
                         <div>
-                            <Typography variant="small" color="blue-gray" className="mb-2 text-left font-medium">
+                            <Typography
+                                variant="small"
+                                color="blue-gray"
+                                className="mb-2 text-left font-medium"
+                            >
                                 Date
                             </Typography>
                             <Input
@@ -117,30 +134,48 @@ export function ModalFormBudgetingEdit({ budgeting, budgetings, setBudgetings })
                                 onChange={handleChange}
                                 className="placeholder:opacity-100 focus:!border-t-gray-900"
                             />
-                            {errors.date && <Typography color="red">{errors.date}</Typography>}
+                            {errors.date && (
+                                <Typography color="red">
+                                    {errors.date}
+                                </Typography>
+                            )}
                         </div>
                         <div>
-                            <Typography variant="small" color="blue-gray" className="mb-2 text-left font-medium">
+                            <Typography
+                                variant="small"
+                                color="blue-gray"
+                                className="mb-2 text-left font-medium"
+                            >
                                 Category
                             </Typography>
                             <Select
                                 value={formData.category}
-                                onChange={(val) => handleSelectChange('category', val)}
+                                onChange={(val) =>
+                                    handleSelectChange("category", val)
+                                }
                                 className="!w-full !border-[1.5px] !border-blue-gray-200/90 !border-t-blue-gray-200/90 bg-white text-gray-800 ring-4 ring-transparent placeholder:text-gray-600 focus:!border-primary focus:!border-t-blue-gray-900 group-hover:!border-primary"
                             >
                                 <Option value="Food">Food</Option>
-                                <Option value="Social Life">Salary</Option>
+                                <Option value="Salary">Salary</Option>
                                 <Option value="Business">Business</Option>
                                 <Option value="Beauty">Beauty</Option>
                                 <Option value="Apparel">Apparel</Option>
                                 <Option value="Transport">Transport</Option>
                                 <Option value="Health">Health</Option>
                             </Select>
-                            {errors.category && <Typography color="red">{errors.category}</Typography>}
+                            {errors.category && (
+                                <Typography color="red">
+                                    {errors.category}
+                                </Typography>
+                            )}
                         </div>
                         <div className="flex gap-4 mt-4">
                             <div className="w-full">
-                                <Typography variant="small" color="blue-gray" className="mb-2 text-left font-medium">
+                                <Typography
+                                    variant="small"
+                                    color="blue-gray"
+                                    className="mb-2 text-left font-medium"
+                                >
                                     Amount
                                 </Typography>
                                 <Input
@@ -150,10 +185,18 @@ export function ModalFormBudgetingEdit({ budgeting, budgetings, setBudgetings })
                                     onChange={handleChange}
                                     className="placeholder:opacity-100 focus:!border-t-gray-900"
                                 />
-                                {errors.amount && <Typography color="red">{errors.amount}</Typography>}
+                                {errors.amount && (
+                                    <Typography color="red">
+                                        {errors.amount}
+                                    </Typography>
+                                )}
                             </div>
                             <div className="w-full">
-                                <Typography variant="small" color="blue-gray" className="mb-2 text-left font-medium">
+                                <Typography
+                                    variant="small"
+                                    color="blue-gray"
+                                    className="mb-2 text-left font-medium"
+                                >
                                     Account
                                 </Typography>
                                 <Input
@@ -163,7 +206,11 @@ export function ModalFormBudgetingEdit({ budgeting, budgetings, setBudgetings })
                                     onChange={handleChange}
                                     className="placeholder:opacity-100 focus:!border-t-gray-900"
                                 />
-                                {errors.account && <Typography color="red">{errors.account}</Typography>}
+                                {errors.account && (
+                                    <Typography color="red">
+                                        {errors.account}
+                                    </Typography>
+                                )}
                             </div>
                         </div>
                         <Button
@@ -179,4 +226,3 @@ export function ModalFormBudgetingEdit({ budgeting, budgetings, setBudgetings })
         </>
     );
 }
-
