@@ -4,9 +4,11 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import ModalFormBudgeting from "./ModalFormBudgeting";
 import { ModalFormBudgetingEdit } from "./ModalFormBudgetingEdit";
+import { format } from "date-fns";
 
 
-export default function TableBudgeting({ Budgeting, setBudgeting }) {
+
+export default function TableBudgeting({ budgeting, setBudgeting }) {
 
     function handleDelete(id) {
         console.log(id, "<< id");
@@ -16,7 +18,7 @@ export default function TableBudgeting({ Budgeting, setBudgeting }) {
                     `http://localhost:3000/budgeting/${id}`
                 );
                 console.log(response, "<< Apa yang di delete?");
-                setBudgeting(Budgeting.filter((item) => item.id !== id));
+                setBudgeting(budgeting.filter((item) => item.id !== id));
             } catch (error) {
                 console.log(error, "<< error");
             }
@@ -50,12 +52,11 @@ export default function TableBudgeting({ Budgeting, setBudgeting }) {
                         Budgeting
                     </h1>
                     <p className="mt-2 text-sm text-[#AEAEAE]">
-                        A summary of all transactions in your account, including
-                        date, amount, and status.
+                    Welcome to the Budgeting page, where you can effectively manage and plan your expenditures. This page provides you with a comprehensive overview of all your transactions, helping you to make informed financial decisions.
                     </p>
                 </div>
                 <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-                    <ModalFormBudgeting Budgeting={Budgeting} setBudgeting={setBudgeting} />
+                    <ModalFormBudgeting budgeting={budgeting} setBudgeting={setBudgeting} />
                 </div>
             </div>
             <div className="mt-8 flow-root">
@@ -97,25 +98,25 @@ export default function TableBudgeting({ Budgeting, setBudgeting }) {
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-gray-200 bg-white">
-                                {Budgeting.length > 0 ? (
-                                    Budgeting.slice(0, 5).map((Budgeting) => (
-                                        <tr key={Budgeting.id}>
+                                {budgeting.length > 0 ? (
+                                    budgeting.slice(0, 5).map((budgeting) => (
+                                        <tr key={budgeting.id}>
                                             <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8">
-                                                {Budgeting.date}
+                                                {format(new Date(budgeting.date), 'dd/MM/yy')}
                                             </td>
                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                {Budgeting.amount}
+                                                {Number(budgeting.amount).toLocaleString('id-ID')}
                                             </td>
                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                {Budgeting.category}
+                                                {budgeting.category}
                                             </td>
                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                {Budgeting.account}
+                                                {budgeting.account}
                                             </td>
                                             <td className="relative whitespace-nowrap py-4 text-right text-sm space-x-3 font-medium sm:pr-4 lg:pr-6">
-                                                <ModalFormBudgetingEdit Budgeting={Budgeting} setBudgeting={setBudgeting}  />
+                                                <ModalFormBudgetingEdit budgeting={budgeting} setBudgeting={setBudgeting}  />
                                                 <Button
-                                                    onClick={() => handleDelete(Budgeting.id)}
+                                                    onClick={() => handleDelete(budgeting.id)}
                                                     className="text-white bg-red-500 p-2 px-6 hover:bg-red-600 rounded-lg hover:shadow-lg transition-all duration-200 ease-in-out"
                                                 >
                                                     Delete

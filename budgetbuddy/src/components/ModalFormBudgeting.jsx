@@ -15,11 +15,11 @@ import {
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import Swal from "sweetalert2";
 
-export default function ModalFormBudgeting({ Budgeting, setBudgeting }) {
+export default function ModalFormBudgeting({ budgeting, setBudgeting }) {
   const [open, setOpen] = useState(false);
   const [form, setForm] = useState({
     date: "",
-    amount: "",
+    amount: "number",
     category: "",
     account: ""
   });
@@ -61,12 +61,12 @@ export default function ModalFormBudgeting({ Budgeting, setBudgeting }) {
     try {
       if (formMethod === "add") {
         const response = await axios.post("http://localhost:3000/budgeting", form);
-        setBudgeting([response.data, ...Budgeting]);
+        setBudgeting([response.data, ...budgeting]);
         Swal.fire("Success", "Budgeting added successfully", "success");
       } 
       setForm({
         date: "",
-        amount: "",
+        amount: "number",
         category: "",
         account: ""
       });
@@ -80,7 +80,7 @@ export default function ModalFormBudgeting({ Budgeting, setBudgeting }) {
 
   return (
     <>
-      <Button onClick={handleOpen} variant="gradient">
+      <Button onClick={handleOpen} className="bg-gradient-to-r from-[#4C3BCF] via-[#5C50E7] to-[#705FF3] text-white font-semibold py-3">
         Add Budgeting
       </Button>
       <Dialog size="sm" open={open} handler={handleOpen} className="p-4">

@@ -37,12 +37,12 @@ import LineCharts from "@/components/LineCharts";
 import TableBudgeting from "@/components/TableBudgeting";
 
 const navigation = [
-    { name: "Dashboard", href: "#", icon: HomeIcon, current: true },
+    { name: "Dashboard", href: "#", icon: HomeIcon, current: false },
     {
         name: "Budgeting",
         href: "/budgeting",
         icon: DocumentDuplicateIcon,
-        current: false,
+        current: true,
     },
     { name: "Transaction", href: "#", icon: FolderIcon, current: false },
     { name: "Bills & payment", href: "#", icon: CalendarIcon, current: false },
@@ -64,14 +64,14 @@ function classNames(...classes) {
 
 export default function Budgeting() {
     const [sidebarOpen, setSidebarOpen] = useState(false);
-    const [Budgeting, setBudgeting] = useState([]);
+    const [budgeting, setBudgeting] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
 
     useEffect(() => {
         async function getBudgeting() {
-            let Budgeting = [];
+            let budgeting = [];
             try {
                 setLoading(true);
                 const response = await axios.get(
@@ -359,7 +359,7 @@ export default function Budgeting() {
                                     <div className="flex justify-end">
                                     </div>
                                     <TableBudgeting
-                                        Budgeting={Budgeting}
+                                        budgeting={budgeting}
                                         setBudgeting={setBudgeting}
                                     />
                                 </div>
