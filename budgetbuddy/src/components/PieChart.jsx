@@ -35,10 +35,6 @@ const chartConfig = {
     label: "Sport",
     color: "#9BB0C1",
   },
-  fashion: {
-    label: "Fashion",
-    color: "#3DC2EC",
-  },
   "social-life": {
     label: "Social Life",
     color: "#F05A7E",
@@ -49,8 +45,20 @@ const chartConfig = {
   },
   transport: {
     label: "Transport",
+    color: "#1E201E",
+  },
+  health: {
+    label: "Health",
     color: "#674636",
   },
+  beauty: {
+    label: "Beauty",
+    color: "#FEECB3",
+  },
+  business: {
+    label: "Business",
+    color: "#7695FF"
+  }
 };
 
 export default function PieCharts({ transaction }) {
@@ -102,7 +110,7 @@ export default function PieCharts({ transaction }) {
       {chartData && (
         <Card className="flex flex-col w-full md:w-[20vw] px-2 rounded-2xl">
           <CardHeader className="pb-0 flex flex-col gap-3">
-            <CardDescription>Total Budgeting All Categories</CardDescription>
+            <CardDescription>Total Transaction All Categories</CardDescription>
           </CardHeader>
           <CardContent className="flex-1 pb-0">
             <ChartContainer
