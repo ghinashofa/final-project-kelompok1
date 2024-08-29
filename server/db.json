@@ -10,15 +10,6 @@
       "id": "86d1"
     },
     {
-      "id": "a415",
-      "date": "2024-08-28",
-      "amount": 7000000,
-      "category": "Social Life",
-      "account": "Bank Mandiri",
-      "note": "Salary",
-      "status": "Income"
-    },
-    {
       "id": "a8d8",
       "date": "2024-08-28",
       "amount": 345000,
@@ -64,15 +55,6 @@
       "category": "Beauty"
     },
     {
-      "id": "dc2f",
-      "date": "2024-08-29",
-      "amount": 3000000,
-      "account": "Bank Mandiri",
-      "note": "Salary",
-      "status": "Income",
-      "category": "Social Life"
-    },
-    {
       "id": "5d01",
       "date": "2024-08-29",
       "amount": 210000,
@@ -82,15 +64,6 @@
       "category": "Food"
     },
     {
-      "id": "81bf",
-      "date": "2024-08-29",
-      "amount": 15000000,
-      "account": "Bank BCA",
-      "note": "Employee Salary",
-      "status": "Expenses",
-      "category": "Social Life"
-    },
-    {
       "id": "c18f",
       "date": "2024-08-29",
       "amount": 12000,
@@ -98,6 +71,15 @@
       "note": "Buy Cilok",
       "status": "Expenses",
       "category": "Food"
+    },
+    {
+      "id": "d526",
+      "date": "2024-08-29",
+      "amount": 6000000,
+      "account": "Bank BCA",
+      "note": "Premi Asuransi",
+      "status": "Expenses",
+      "category": "Business"
     }
   ],
   "budgeting": [

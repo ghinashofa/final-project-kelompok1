@@ -35,8 +35,8 @@ const chartConfig = {
     label: "Sport",
     color: "#9BB0C1",
   },
-  "social-life": {
-    label: "Social Life",
+  salary: {
+    label: "Salary",
     color: "#F05A7E",
   },
   apparel: {

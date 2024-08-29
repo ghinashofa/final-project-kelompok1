@@ -177,8 +177,8 @@ export function ModalForm({ transactions, setTransactions }) {
                                 }}
                             >
                                 <Option value="Food">Food</Option>
-                                <Option value="Social Life">Salary</Option>
-                                <Option value="Social Life">Business</Option>
+                                <Option value="Salary">Salary</Option>
+                                <Option value="Business">Business</Option>
                                 <Option value="Beauty">Beauty</Option>
                                 <Option value="Apparel">Apparel</Option>
                                 <Option value="Transport">Transport</Option>
