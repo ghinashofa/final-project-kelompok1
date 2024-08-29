@@ -37,12 +37,12 @@ import LineCharts from "@/components/LineCharts";
 import TableBudgeting from "@/components/TableBudgeting";
 
 const navigation = [
-    { name: "Dashboard", href: "#", icon: HomeIcon, current: true },
+    { name: "Dashboard", href: "#", icon: HomeIcon, current: false },
     {
         name: "Budgeting",
         href: "/budgeting",
         icon: DocumentDuplicateIcon,
-        current: false,
+        current: true,
     },
     { name: "Transaction", href: "#", icon: FolderIcon, current: false },
     { name: "Bills & payment", href: "#", icon: CalendarIcon, current: false },

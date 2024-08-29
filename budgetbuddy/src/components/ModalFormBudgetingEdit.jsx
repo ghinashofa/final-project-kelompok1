@@ -152,7 +152,7 @@ export function ModalFormBudgetingEdit({ budgeting, setBudgeting }) {
                 <Option value="Salary">Salary</Option>
                 <Option value="Business">Business</Option>
                 <Option value="Beauty">Beauty</Option>
-                <Option value="Apparel">Apparel</Option>
+                <Option value="Rent">Rent</Option>
                 <Option value="Transport">Transport</Option>
                 <Option value="Health">Health</Option>
               </Select>

@@ -4,6 +4,8 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import ModalFormBudgeting from "./ModalFormBudgeting";
 import { ModalFormBudgetingEdit } from "./ModalFormBudgetingEdit";
+import { format } from "date-fns";
+
 
 
 export default function TableBudgeting({ budgeting, setBudgeting }) {
@@ -50,8 +52,7 @@ export default function TableBudgeting({ budgeting, setBudgeting }) {
                         Budgeting
                     </h1>
                     <p className="mt-2 text-sm text-[#AEAEAE]">
-                        A summary of all transactions in your account, including
-                        date, amount, and status.
+                    Welcome to the Budgeting page, where you can effectively manage and plan your expenditures. This page provides you with a comprehensive overview of all your transactions, helping you to make informed financial decisions.
                     </p>
                 </div>
                 <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
@@ -101,10 +102,10 @@ export default function TableBudgeting({ budgeting, setBudgeting }) {
                                     budgeting.slice(0, 5).map((budgeting) => (
                                         <tr key={budgeting.id}>
                                             <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8">
-                                                {budgeting.date}
+                                                {format(new Date(budgeting.date), 'dd/MM/yy')}
                                             </td>
                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                {budgeting.amount}
+                                                {Number(budgeting.amount).toLocaleString('id-ID')}
                                             </td>
                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                                 {budgeting.category}

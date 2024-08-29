@@ -19,7 +19,7 @@ export default function ModalFormBudgeting({ budgeting, setBudgeting }) {
   const [open, setOpen] = useState(false);
   const [form, setForm] = useState({
     date: "",
-    amount: "",
+    amount: "number",
     category: "",
     account: ""
   });
@@ -66,7 +66,7 @@ export default function ModalFormBudgeting({ budgeting, setBudgeting }) {
       } 
       setForm({
         date: "",
-        amount: "",
+        amount: "number",
         category: "",
         account: ""
       });
