@@ -109,11 +109,11 @@
       "account": "BNI"
     },
     {
-      "id": "3a3a",
       "date": "2024-08-27",
       "amount": "100000",
-      "category": "Clothing",
-      "account": "BNI"
+      "category": "Business",
+      "account": "BNI",
+      "id": "3a3a"
     },
     {
       "id": "0dd1",
