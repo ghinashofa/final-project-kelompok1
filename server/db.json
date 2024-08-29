@@ -99,5 +99,35 @@
       "status": "Expenses",
       "category": "Food"
     }
+  ],
+  "budgeting": [
+    {
+      "date": "2024-08-12",
+      "amount": "100000",
+      "category": "Clothing",
+      "account": "BCA",
+      "id": "8d7f"
+    },
+    {
+      "id": "e1f9",
+      "date": "2024-08-07",
+      "amount": "10000",
+      "category": "Fashion",
+      "account": "BNI"
+    },
+    {
+      "id": "3a3a",
+      "date": "2024-08-27",
+      "amount": "100000",
+      "category": "Clothing",
+      "account": "BNI"
+    },
+    {
+      "id": "0dd1",
+      "date": "2024-08-22",
+      "amount": "300000",
+      "category": "Fashion",
+      "account": "BNI"
+    }
   ]
 }
