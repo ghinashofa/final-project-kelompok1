@@ -15,11 +15,11 @@ import {
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import Swal from "sweetalert2";
 
-export default function ModalFormBudgeting({ Budgeting, setBudgeting }) {
+export default function ModalFormBudgeting({ budgeting, setBudgeting }) {
   const [open, setOpen] = useState(false);
   const [form, setForm] = useState({
     date: "",
-    amount: "",
+    amount: "number",
     category: "",
     account: ""
   });
@@ -61,12 +61,12 @@ export default function ModalFormBudgeting({ Budgeting, setBudgeting }) {
     try {
       if (formMethod === "add") {
         const response = await axios.post("http://localhost:3000/budgeting", form);
-        setBudgeting([response.data, ...Budgeting]);
+        setBudgeting([response.data, ...budgeting]);
         Swal.fire("Success", "Budgeting added successfully", "success");
       } 
       setForm({
         date: "",
-        amount: "",
+        amount: "number",
         category: "",
         account: ""
       });
@@ -80,7 +80,7 @@ export default function ModalFormBudgeting({ Budgeting, setBudgeting }) {
 
   return (
     <>
-      <Button onClick={handleOpen} variant="gradient">
+      <Button onClick={handleOpen} className="bg-gradient-to-r from-[#4C3BCF] via-[#5C50E7] to-[#705FF3] text-white font-semibold py-3">
         Add Budgeting
       </Button>
       <Dialog size="sm" open={open} handler={handleOpen} className="p-4">
@@ -146,8 +146,8 @@ export default function ModalFormBudgeting({ Budgeting, setBudgeting }) {
               className="!w-full !border-[1.5px] !border-blue-gray-200/90 !border-t-blue-gray-200/90 bg-white text-gray-800 ring-4 ring-transparent placeholder:text-gray-600 focus:!border-primary focus:!border-t-blue-gray-900 group-hover:!border-primary"
             >
               <Option value="Food">Food</Option>
-              <Option value="Social Life">Salary</Option>
-              <Option value="Social Life">Business</Option>
+              <Option value="Salary">Salary</Option>
+              <Option value="Business">Business</Option>
               <Option value="Beauty">Beauty</Option>
               <Option value="Apparel">Apparel</Option>
               <Option value="Transport">Transport</Option>
