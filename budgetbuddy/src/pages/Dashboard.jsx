@@ -2,7 +2,6 @@ import React from "react";
 import logo from "../assets/logo.png";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import {
     Dialog,
@@ -37,14 +36,14 @@ import CardsDashboard from "../components/CardsDashboard";
 import LineCharts from "@/components/LineCharts";
 
 const navigation = [
-    { name: "Dashboard", href: "#", icon: HomeIcon, current: true },
+    { name: "Dashboard", href: "/", icon: HomeIcon, current: true },
     {
         name: "Budgeting",
         href: "#",
         icon: DocumentDuplicateIcon,
         current: false,
     },
-    { name: "Transaction", href: "#", icon: FolderIcon, current: false },
+    { name: "Transaction", href: "/transaction", icon: FolderIcon, current: false },
     { name: "Bills & payment", href: "#", icon: CalendarIcon, current: false },
     { name: "Reports", href: "#", icon: ChartPieIcon, current: false },
 ];
@@ -142,8 +141,8 @@ export default function Dashboard() {
                                             >
                                                 {navigation.map((item) => (
                                                     <li key={item.name}>
-                                                        <a
-                                                            href={item.href}
+                                                        <Link
+                                                            to={item.href}
                                                             className={classNames(
                                                                 item.current
                                                                     ? "bg-gray-50 text-indigo-600"
@@ -161,7 +160,7 @@ export default function Dashboard() {
                                                                 )}
                                                             />
                                                             {item.name}
-                                                        </a>
+                                                        </Link>
                                                     </li>
                                                 ))}
                                             </ul>
@@ -365,7 +364,7 @@ export default function Dashboard() {
                                 </div>
                             )}
                             <CardsDashboard transactions={transactions} />
-                            <LineCharts />
+                            <LineCharts transaction={transactions} />
 
                             {loading ? (
                                 <p>Loading...</p>
