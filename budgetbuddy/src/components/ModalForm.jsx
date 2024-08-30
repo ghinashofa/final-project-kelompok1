@@ -52,18 +52,28 @@ export function ModalForm({ transactions, setTransactions }) {
 
         const dataSelect = {
             ...formData,
+            amount: parseFloat(formData.amount),
             status: status,
             category: category,
         };
+
+        // if (isNaN(dataSelect.amount)) {
+        //     Swal.fire({
+        //         icon: "warning",
+        //         title: "Invalid Amount",
+        //         text: "Please enter a valid number for the amount.",
+        //     });
+        //     return; 
+        // }
 
         async function addTransaction() {
             try {
                 const response = await axios.post(
                     "http://localhost:3000/transaction",
-                    dataSelect
+                    dataSelect 
                 );
                 console.log("Transaction added successfully:", response.data);
-                setTransactions([...transactions, response.data]);
+                setTransactions([response.data, ...transactions]);
 
                 setFormData({
                     date: "",
@@ -146,14 +156,14 @@ export function ModalForm({ transactions, setTransactions }) {
                                 labelProps={{
                                     className: "hidden",
                                 }}
-                                style={{borderTop: "1px solid"}}
+                                style={{borderTop: "1px solid #B0BFC5"}}
                             />
                         </div>
                         <div>
                             <Typography
                                 variant="small"
                                 color="blue-gray"
-                                className="mb-2 text-left font-medium"
+                                className="mb-2 mt-3 text-left font-medium"
                             >
                                 Category
                             </Typography>
@@ -167,15 +177,15 @@ export function ModalForm({ transactions, setTransactions }) {
                                 }}
                             >
                                 <Option value="Food">Food</Option>
-                                <Option value="Social Life">Salary</Option>
-                                <Option value="Social Life">Business</Option>
+                                <Option value="Salary">Salary</Option>
+                                <Option value="Business">Business</Option>
                                 <Option value="Beauty">Beauty</Option>
                                 <Option value="Apparel">Apparel</Option>
                                 <Option value="Transport">Transport</Option>
                                 <Option value="Health">Health</Option>
                             </Select>
                         </div>
-                        <div className="flex gap-4 mt-4">
+                        <div className="flex gap-4 mt-3">
                             <div className="w-full">
                                 <Typography
                                     variant="small"
@@ -186,8 +196,9 @@ export function ModalForm({ transactions, setTransactions }) {
                                 </Typography>
                                 <Input
                                     color="gray"
+                                    type="number"
                                     size="lg"
-                                    placeholder="Rp00"
+                                    placeholder="00"
                                     name="amount"
                                     onChange={handleChange}
                                     className="placeholder:opacity-100 focus:!border-t-gray-900"
@@ -227,7 +238,7 @@ export function ModalForm({ transactions, setTransactions }) {
                             <Typography
                                 variant="small"
                                 color="blue-gray"
-                                className="mb-2 text-left font-medium"
+                                className="mb-2 mt-3 text-left font-medium"
                             >
                                 Status
                             </Typography>
@@ -249,7 +260,7 @@ export function ModalForm({ transactions, setTransactions }) {
                             <Typography
                                 variant="small"
                                 color="blue-gray"
-                                className="mb-2 text-left font-medium"
+                                className="mb-2 mt-3 text-left font-medium"
                             >
                                 Notes (Optional)
                             </Typography>

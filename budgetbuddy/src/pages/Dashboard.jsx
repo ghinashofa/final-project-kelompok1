@@ -2,6 +2,7 @@ import React from "react";
 import logo from "../assets/logo.png";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import {
     Dialog,
     DialogBackdrop,
@@ -29,18 +30,20 @@ import {
     MagnifyingGlassIcon,
 } from "@heroicons/react/20/solid";
 
-import Cards from "../components/Cards";
+import Cards from "../components/CardsDashboard";
 import TableDashboard from "../components/TableDashboard";
+import CardsDashboard from "../components/CardsDashboard";
+import LineCharts from "@/components/LineCharts";
 
 const navigation = [
-    { name: "Dashboard", href: "#", icon: HomeIcon, current: true },
+    { name: "Dashboard", href: "/", icon: HomeIcon, current: true },
     {
         name: "Budgeting",
-        href: "#",
+        href: "/budgeting",
         icon: DocumentDuplicateIcon,
         current: false,
     },
-    { name: "Transaction", href: "#", icon: FolderIcon, current: false },
+    { name: "Transaction", href: "/transaction", icon: FolderIcon, current: false },
     { name: "Bills & payment", href: "#", icon: CalendarIcon, current: false },
     { name: "Reports", href: "#", icon: ChartPieIcon, current: false },
 ];
@@ -64,16 +67,20 @@ export default function Dashboard() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
+
     useEffect(() => {
         async function getTransactions() {
+            let transactions = [];
             try {
                 setLoading(true);
                 const response = await axios.get(
                     "http://localhost:3000/transaction"
                 );
-                setTransactions(response.data);
-                console.log(response,"<< response");
-
+                transactions = response.data.sort(function (a, b) {
+                    return Date.parse(b.date) - Date.parse(a.date);
+                });
+                setTransactions(transactions);
+                console.log(response, "<< response");
             } catch (error) {
                 setError(error);
             } finally {
@@ -82,6 +89,8 @@ export default function Dashboard() {
         }
         getTransactions();
     }, []);
+
+
 
     return (
         <>
@@ -139,8 +148,8 @@ export default function Dashboard() {
                                             >
                                                 {navigation.map((item) => (
                                                     <li key={item.name}>
-                                                        <a
-                                                            href={item.href}
+                                                        <Link
+                                                            to={item.href}
                                                             className={classNames(
                                                                 item.current
                                                                     ? "bg-gray-50 text-indigo-600"
@@ -158,7 +167,7 @@ export default function Dashboard() {
                                                                 )}
                                                             />
                                                             {item.name}
-                                                        </a>
+                                                        </Link>
                                                     </li>
                                                 ))}
                                             </ul>
@@ -361,12 +370,26 @@ export default function Dashboard() {
                                     </div>
                                 </div>
                             )}
-                            <Cards />
+                            <CardsDashboard transactions={transactions} />
+                            <LineCharts transaction={transactions} />
+
+
                             {loading ? (
                                 <p>Loading...</p>
                             ) : (
-                                <TableDashboard transactions={transactions} setTransactions={setTransactions} />
-
+                                <div className="mt-6 flex flex-col">
+                                    <div className="flex justify-end">
+                                        <Link to={"/transaction"}>
+                                            <button className="px-4 py-2 bg-none text-[#4C3BCF] hover:shadow-md rounded-md">
+                                                See more
+                                            </button>
+                                        </Link>
+                                    </div>
+                                    <TableDashboard
+                                        transactions={transactions}
+                                        setTransactions={setTransactions}
+                                    />
+                                </div>
                             )}
                         </div>
                     </main>

@@ -18,22 +18,108 @@
   ],
   "transactions": [
     {
-      "id": "afe4",
       "date": "2024-08-28",
-      "amount": "Rp 7.000.000",
+      "amount": 1200000,
       "account": "Bank Mandiri",
       "note": "Salary",
-      "status": "Income",
-      "category": "Social Life"
+      "category": "Food",
+      "status": "Expenses",
+      "id": "86d1"
     },
     {
-      "id": "0581",
+      "id": "a8d8",
       "date": "2024-08-28",
-      "amount": "Rp 32.000",
-      "category": "Food",
+      "amount": 345000,
+      "category": "Beauty",
       "account": "Bank Mandiri",
-      "note": "Buy Breakfast",
+      "note": "Buy Makeup",
       "status": "Expenses"
+    },
+    {
+      "id": "931e",
+      "date": "2024-08-28",
+      "amount": 52000,
+      "category": "Transport",
+      "account": "Bank Mandiri",
+      "note": "Gojek",
+      "status": "Expenses"
+    },
+    {
+      "id": "ec08",
+      "date": "2024-08-28",
+      "amount": 565000,
+      "category": "Apparel",
+      "account": "Bank Mandiri",
+      "note": "Buy Clothes in HnM",
+      "status": "Expenses"
+    },
+    {
+      "id": "fb5d",
+      "date": "2024-08-28",
+      "amount": 8000,
+      "account": "Bank Mandiri",
+      "note": "Buy Noodles",
+      "status": "Expenses",
+      "category": "Food"
+    },
+    {
+      "id": "4e1c",
+      "date": "2024-08-28",
+      "amount": 150000,
+      "account": "Bank Mandiri",
+      "note": "Buy Makeup",
+      "status": "Expenses",
+      "category": "Beauty"
+    },
+    {
+      "id": "5d01",
+      "date": "2024-08-29",
+      "amount": 210000,
+      "account": "Bank Mandiri",
+      "note": "Buy Noodles",
+      "status": "Expenses",
+      "category": "Food"
+    },
+    {
+      "id": "c18f",
+      "date": "2024-08-29",
+      "amount": 12000,
+      "account": "Shopee",
+      "note": "Buy Cilok",
+      "status": "Expenses",
+      "category": "Food"
+    },
+    {
+      "id": "d526",
+      "date": "2024-08-29",
+      "amount": 6000000,
+      "account": "Bank BCA",
+      "note": "Premi Asuransi",
+      "status": "Expenses",
+      "category": "Business"
+    }
+  ],
+  "budgeting": [
+    {
+      "id": "e1f9",
+      "date": "2024-08-07",
+      "amount": "10000",
+      "category": "Fashion",
+      "account": "BNI"
+    },
+    {
+      "date": "2024-08-27",
+      "amount": "100000",
+      "category": "Business",
+      "account": "BNI",
+      "id": "3a3a"
+    },
+    {
+      "id": "0dd1",
+      "date": "2024-08-22",
+      "amount": "300000",
+      "category": "Fashion",
+      "account": "BNI"
     }
   ]
 }
