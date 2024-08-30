@@ -72,4 +72,11 @@ export const router = createBrowserRouter([
       }
     },
   },
+  {
+    path: "/signout",
+    loader: () => {
+      localStorage.removeItem("authToken");
+      return redirect("/login");
+    },
+  },
 ]);
