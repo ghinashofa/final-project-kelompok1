@@ -1,5 +1,22 @@
 {
-  "transaction": [
+  "users": [
+    {
+      "id": "1",
+      "email": "user1@mail.com",
+      "password": "user1password"
+    },
+    {
+      "id": "2",
+      "email": "user2@mail.com",
+      "password": "user2password"
+    },
+    {
+      "id": "f2fb",
+      "email": "fachri@mail.com",
+      "password": "fachri1"
+    }
+  ],
+  "transactions": [
     {
       "id": "afe4",
       "date": "2024-08-28",
