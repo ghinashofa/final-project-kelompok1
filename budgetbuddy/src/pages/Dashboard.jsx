@@ -72,9 +72,10 @@ export default function Dashboard() {
         async function getTransactions() {
             let transactions = [];
             try {
+                console.log("INI JALANNNNNNNNN");
                 setLoading(true);
                 const response = await axios.get(
-                    "http://localhost:3000/transaction"
+                    "http://localhost:3000/transactions"
                 );
                 transactions = response.data.sort(function (a, b) {
                     return Date.parse(b.date) - Date.parse(a.date);

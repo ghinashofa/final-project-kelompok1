@@ -71,7 +71,7 @@ export default function Transaction() {
     async function getTransactions() {
       try {
         setLoading(true);
-        const response = await axios.get("http://localhost:3000/transaction");
+        const response = await axios.get("http://localhost:3000/transactions");
         setTransactions(response.data);
         console.log(response, "<< response");
       } catch (error) {
