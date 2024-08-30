@@ -129,7 +129,7 @@ export default function PieCharts({ transaction }) {
   return (
     <>
       {chartData && (
-        <Card className="flex flex-col w-full md:w-[20vw] px-2 rounded-2xl">
+        <Card className="flex flex-col w-full md:w-[32vw] px-2 rounded-2xl">
           <CardHeader className="pb-0 flex flex-col gap-3">
             <CardDescription>Total Transaction All Categories</CardDescription>
           </CardHeader>
