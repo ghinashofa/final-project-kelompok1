@@ -59,7 +59,7 @@ export default function Login() {
 
   return (
     <div className="flex min-h-screen bg-gray-100">
-      <div className="relative hidden lg:flex lg:w-1/2">
+      <div className="relative hidden lg:flex lg:w-1/2 bg-[#4C3BCF]">
         <img
           alt="Login Background"
           src={sideRight}
@@ -71,7 +71,7 @@ export default function Login() {
         <div className="w-full max-w-md">
           <h2 className="text-3xl font-bold text-gray-900 mb-8">Sign in to your account</h2>
 
-          <form onSubmit={handleLogin} className="space-y-6">
+          <form onSubmit={handleLogin} className="">
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-900">Email address</label>
               <div className="mt-1">
@@ -83,13 +83,13 @@ export default function Login() {
                   autoComplete="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 text-base py-2 px-3"
+                  className="block w-full rounded-md border border-gray-300 py-2 shadow-sm placeholder:text-gray-400 focus:ring-2 focus:ring-[#4C3BCF] sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-900">Password</label>
+              <label htmlFor="password" className="block text-sm font-medium text-gray-900 mt-4">Password</label>
               <div className="mt-1">
                 <input
                   id="password"
@@ -99,13 +99,13 @@ export default function Login() {
                   autoComplete="current-password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 text-base py-2 px-3"
+                  className="block w-full rounded-md border border-gray-300 py-2 shadow-sm placeholder:text-gray-400 focus:ring-2 focus:ring-[#4C3BCF] sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
 
             <div className="flex items-center justify-between">
-              <div className="flex items-center">
+              <div className="flex items-center mt-4">
                 <input
                   id="remember-me"
                   name="remember-me"
@@ -120,10 +120,10 @@ export default function Login() {
               </div>
             </div>
 
-            <div>
+            <div className='flex flex-col justify-center items-center mt-6'>
               <button
                 type="submit"
-                className="w-full rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2"
+                className="flex w-full justify-center mt-8 rounded-md bg-gradient-to-r from-[#4C3BCF] via-[#5C50E7] to-[#705FF3] text-white font-semibold py-2.5 text-sm leading-6 shadow-sm hover:bg-[#3527a3] hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Sign in
               </button>

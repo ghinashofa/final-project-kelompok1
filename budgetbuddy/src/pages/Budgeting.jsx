@@ -44,7 +44,12 @@ const navigation = [
         icon: DocumentDuplicateIcon,
         current: true,
     },
-    { name: "Transaction", href: "/transaction", icon: FolderIcon, current: false },
+    {
+        name: "Transaction",
+        href: "/transaction",
+        icon: FolderIcon,
+        current: false,
+    },
     { name: "Bills & payment", href: "#", icon: CalendarIcon, current: false },
     { name: "Reports", href: "#", icon: ChartPieIcon, current: false },
 ];
@@ -68,7 +73,6 @@ export default function Budgeting() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-
     useEffect(() => {
         async function getBudgeting() {
             let budgeting = [];
@@ -90,8 +94,6 @@ export default function Budgeting() {
         }
         getBudgeting();
     }, []);
-
-
 
     return (
         <>
@@ -279,11 +281,11 @@ export default function Budgeting() {
                         >
                             <div className="relative flex flex-1 flex-col">
                                 <h3 className="text-base font-semibold">
-                                    Dashboard
+                                    Budgeting
                                 </h3>
                                 <p className="text-sm font-normal text-[#AEAEAE]">
-                                    Take a look at your latest transactions and
-                                    financial trends.
+                                    Manage your budget and monitor your finances
+                                    to reach your goals.
                                 </p>
                             </div>
                             <div className="flex items-center gap-x-4 lg:gap-x-6">
@@ -356,8 +358,7 @@ export default function Budgeting() {
                                 <p>Loading...</p>
                             ) : (
                                 <div className="mt-6 flex flex-col">
-                                    <div className="flex justify-end">
-                                    </div>
+                                    <div className="flex justify-end"></div>
                                     <TableBudgeting
                                         budgeting={budgeting}
                                         setBudgeting={setBudgeting}

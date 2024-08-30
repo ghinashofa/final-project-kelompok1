@@ -51,16 +51,19 @@ export function ModalFormEdit({ transaction, transactions, setTransactions }) {
         e.preventDefault();
         console.log("Editing transaction with ID:", id);
 
+
+
         async function editTransaction() {
             try {
                 const updatedData = {
                     ...formData,
-                    category,
-                    status,
+                    amount: parseFloat(formData.amount),
+                    status: status,
+                    category: category,
                 };
 
                 const response = await axios.put(
-                    `http://localhost:3000/transaction/${id}`,
+                    `http://localhost:3000/transactions/${id}`,
                     updatedData
                 );
 

@@ -13,7 +13,7 @@ export default function TableDashboard({ transactions, setTransactions }) { // M
         try {
             async function deleteTransaction() {
                 const response = await axios.delete(
-                    `http://localhost:3000/transaction/${id}`
+                    `http://localhost:3000/transactions/${id}`
                 );
                 console.log(response, "<< Apa yang di delete?");
                 setTransactions(transactions.filter((transaction) => transaction.id!== id));

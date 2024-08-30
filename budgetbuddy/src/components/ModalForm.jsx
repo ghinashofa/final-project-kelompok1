@@ -69,7 +69,7 @@ export function ModalForm({ transactions, setTransactions }) {
         async function addTransaction() {
             try {
                 const response = await axios.post(
-                    "http://localhost:3000/transaction",
+                    "http://localhost:3000/transactions",
                     dataSelect 
                 );
                 console.log("Transaction added successfully:", response.data);

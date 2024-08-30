@@ -19,6 +19,16 @@
       "id": "c334",
       "email": "test10@mail.com",
       "password": "test1"
+    },
+    {
+      "id": "dd8a",
+      "email": "user12@mail.com",
+      "password": "user12"
+    },
+    {
+      "id": "3572",
+      "email": "user17@mail.com",
+      "password": "user17"
     }
   ],
   "transactions": [
@@ -95,13 +105,13 @@
       "category": "Food"
     },
     {
-      "id": "173f",
       "date": "2024-08-30",
-      "amount": 5000000,
+      "amount": 10000000,
       "account": "Bank BCA",
       "note": "Premi Asuransi",
       "status": "Income",
-      "category": "Apparel"
+      "category": "Apparel",
+      "id": "173f"
     }
   ],
   "budgeting": [
@@ -120,11 +130,11 @@
       "id": "3a3a"
     },
     {
-      "id": "0dd1",
-      "date": "2024-08-22",
-      "amount": "300000",
-      "category": "Fashion",
-      "account": "BNI"
+      "id": "6932",
+      "date": "2024-08-30",
+      "amount": "30000000",
+      "category": "Health",
+      "account": "Bank Mandiri"
     }
   ]
 }

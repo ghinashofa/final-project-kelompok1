@@ -72,7 +72,6 @@ export default function Dashboard() {
         async function getTransactions() {
             let transactions = [];
             try {
-                console.log("INI JALANNNNNNNNN");
                 setLoading(true);
                 const response = await axios.get(
                     "http://localhost:3000/transactions"
