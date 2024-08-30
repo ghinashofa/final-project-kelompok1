@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GoogleLogin } from '@react-oauth/google';
-
-const API_URL = 'http://localhost:3001/users';
+import sideRight from "../assets/side_right.png"
+const API_URL = 'http://localhost:3000/users';
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID; 
 
 export default function Login() {
@@ -44,7 +44,7 @@ export default function Login() {
 
       if (data.success) {
         localStorage.setItem('authToken', JSON.stringify(data.user));
-        navigate('/dashboard'); 
+        navigate('/'); 
       } else {
         console.error('Google login Error:', data.message);
       }
@@ -62,8 +62,8 @@ export default function Login() {
       <div className="relative hidden lg:flex lg:w-1/2">
         <img
           alt="Login Background"
-          src="https://images.unsplash.com/photo-1496917756835-20cb06e75b4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1908&q=80"
-          className="absolute inset-0 h-full w-full object-cover"
+          src={sideRight}
+          className="absolute inset-0 h-full w-full object-contain"
         />
       </div>
 

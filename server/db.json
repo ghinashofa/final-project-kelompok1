@@ -14,6 +14,11 @@
       "id": "f2fb",
       "email": "fachri@mail.com",
       "password": "fachri1"
+    },
+    {
+      "id": "c334",
+      "email": "test10@mail.com",
+      "password": "test1"
     }
   ],
   "transactions": [

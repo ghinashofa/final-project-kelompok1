@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
+import sideRight from "../assets/side_right.png"
 
 export default function SignUp() {
   const [email, setEmail] = useState('');
@@ -10,7 +11,7 @@ export default function SignUp() {
   const handleSignUp = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:3001/users', {
+      const response = await fetch('http://localhost:3000/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -138,8 +139,8 @@ export default function SignUp() {
         <div className="relative hidden w-0 flex-1 lg:block">
           <img
             alt=""
-            src="https://images.unsplash.com/photo-1496917756835-20cb06e75b4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1908&q=80"
-            className="absolute inset-0 h-full w-full object-cover"
+            src={sideRight}
+            className="absolute inset-0 h-full w-full object-contain"
           />
         </div>
       </div>
