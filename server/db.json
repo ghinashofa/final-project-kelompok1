@@ -73,13 +73,13 @@
       "category": "Food"
     },
     {
-      "id": "d526",
-      "date": "2024-08-29",
-      "amount": 6000000,
+      "id": "173f",
+      "date": "2024-08-30",
+      "amount": 5000000,
       "account": "Bank BCA",
       "note": "Premi Asuransi",
-      "status": "Expenses",
-      "category": "Business"
+      "status": "Income",
+      "category": "Apparel"
     }
   ],
   "budgeting": [

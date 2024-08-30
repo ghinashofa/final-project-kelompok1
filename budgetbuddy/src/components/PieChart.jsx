@@ -31,10 +31,6 @@ const chartConfig = {
     label: "Food",
     color: "#4535C1",
   },
-  sport: {
-    label: "Sport",
-    color: "#9BB0C1",
-  },
   salary: {
     label: "Salary",
     color: "#F05A7E",
@@ -57,14 +53,42 @@ const chartConfig = {
   },
   business: {
     label: "Business",
-    color: "#7695FF"
-  }
+    color: "#7695FF",
+  },
 };
 
+const colorDescriptions = [{
+      label: "Food",
+      color: "#4535C1",
+    },
+  {
+      label: "Salary",
+      color: "#F05A7E",
+    },
+    {
+      label: "Apparel",
+      color: "#7A1CAC",
+    },
+    {
+      label: "Transport",
+      color: "#1E201E",
+    },
+    {
+      label: "Health",
+      color: "#FABC3F",
+    },
+    {
+      label: "Beauty",
+      color: "#FEECB3",
+    },
+    {
+      label: "Business",
+      color: "#7695FF",
+    },
+];
+
 export default function PieCharts({ transaction }) {
-  // console.log(transaction);
   const [chartData, setChartData] = useState(null);
-  //   const [listCategory, setListCategory]= useState([])
   const [dataPerCategory, setDataPerCategory] = useState([]);
 
   // Fungsi untuk menghitung total amount per kategori
@@ -76,7 +100,7 @@ export default function PieCharts({ transaction }) {
       }
       acc[category] += amount;
       setDataPerCategory(acc);
-      console.log(acc);
+      // console.log(acc);
       formatCategoryData(acc);
       return acc;
     }, {});
@@ -91,19 +115,16 @@ export default function PieCharts({ transaction }) {
       };
     });
 
-    console.log(formattedData);
+    // console.log(formattedData);
     setChartData(formattedData);
     return formattedData;
   }
 
-//   console.log(dataPerCategory, "INI PERKATEGORI");
 
   useEffect(() => {
-    // formatChartDataCategory();
     calculateTotalPerCategory();
   }, [transaction]);
 
-    // console.log(chartData, "INI CHARTDATA 98");
 
   return (
     <>
@@ -131,13 +152,18 @@ export default function PieCharts({ transaction }) {
               </PieChart>
             </ChartContainer>
           </CardContent>
-          <CardFooter className="flex-col gap-2 text-sm  items-start h-[50%] py-2">
-            <div className="flex flex-col items-start gap-5">
-              <div className="flex gap-1 items-center">
-                <span className="w-3 h-[50%] bg-red-700 rounded-sm"></span>
-                <p>Total Income </p>
-              </div>
-            </div>
+          <CardFooter className="hidden md:flex md:flex-col gap-2 text-sm  items-start h-[50%] py-2">
+            {colorDescriptions.map((el, i) => {
+              return (
+                <div key={i} className="flex flex-col items-start gap-5">
+                  <div className="flex gap-1 items-center">
+                  <span className={`w-3 h-[50%] bg-[${el.color}] rounded-sm`}></span>
+                    <p>Total {el.label} </p>
+                    {/* <p>{el.color}</p> */}
+                  </div>
+                </div>
+              );
+            })}
           </CardFooter>
         </Card>
       )}
