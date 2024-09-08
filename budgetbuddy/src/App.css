@@ -5,3 +5,8 @@
 .logo {
   font-family: "Quicksand", sans-serif;
 }
+
+.googleBorder {
+  border: #4C3BCF !important;
+  border-radius: 100px !important;
+}

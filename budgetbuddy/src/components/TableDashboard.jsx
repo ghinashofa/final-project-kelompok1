@@ -48,7 +48,7 @@ export default function TableDashboard({ transactions, setTransactions }) { // M
         <div className="px-4 sm:px-6 lg:px-8 mt-2 bg-white rounded-2xl shadow-custom-combined p-6">
             <div className="sm:flex sm:items-center">
                 <div className="sm:flex-auto justify-between">
-                    <h1 className="text-lg font-semibold leading-6 text-gray-900">
+                    <h1 className="text-xl font-semibold leading-6 text-gray-900"> 
                         Transaction History
                     </h1>
                     <p className="mt-2 text-sm text-[#AEAEAE]">

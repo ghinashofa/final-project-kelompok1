@@ -112,6 +112,69 @@
       "status": "Income",
       "category": "Apparel",
       "id": "173f"
+    },
+    {
+      "date": "2024-01-01",
+      "amount": 10000000,
+      "account": "Bank Mandiri",
+      "note": "Salary",
+      "status": "Income",
+      "category": "Salary",
+      "id": "afb8"
+    },
+    {
+      "date": "2024-01-01",
+      "amount": 120000,
+      "account": "Bank Mandiri",
+      "note": "Breakfast ",
+      "status": "Expenses",
+      "category": "Food",
+      "id": "97d3"
+    },
+    {
+      "id": "839a",
+      "date": "2024-01-01",
+      "amount": 80000,
+      "category": "Transport",
+      "account": "Bank Mandiri",
+      "note": "Pay Gojek & Grab",
+      "status": "Expenses"
+    },
+    {
+      "id": "45ec",
+      "date": "2024-01-03",
+      "amount": 425000,
+      "account": "Shopee",
+      "note": "Buy Skintific in Shopee",
+      "status": "Expenses",
+      "category": "Beauty"
+    },
+    {
+      "id": "fc58",
+      "date": "2024-02-01",
+      "amount": 10000000,
+      "account": "Bank Mandiri",
+      "note": "Salary",
+      "status": "Income",
+      "category": "Salary"
+    },
+    {
+      "id": "3503",
+      "date": "2024-02-08",
+      "amount": 1400000,
+      "category": "",
+      "account": "Bank Mandiri",
+      "note": "Buy Shoes",
+      "status": "Expenses"
+    },
+    {
+      "id": "5d92",
+      "date": "2024-04-05",
+      "amount": 150000,
+      "account": "Bank Mandiri",
+      "note": "Lunch at Golden Lamian",
+      "status": "Expenses",
+      "category": ""
     }
   ],
   "budgeting": [

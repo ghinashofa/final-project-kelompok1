@@ -86,6 +86,8 @@ export default function Dashboard() {
             } finally {
                 setLoading(false);
             }
+
+
         }
         getTransactions();
     }, []);
