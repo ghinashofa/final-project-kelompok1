@@ -175,6 +175,33 @@
       "note": "Lunch at Golden Lamian",
       "status": "Expenses",
       "category": ""
+    },
+    {
+      "date": "2024-09-13",
+      "amount": 128300,
+      "account": "Bank Mandiri",
+      "note": "Buy Noodles",
+      "status": "Expenses",
+      "category": "Food",
+      "id": "726b"
+    },
+    {
+      "id": "39b1",
+      "date": "2024-09-14",
+      "amount": 10000000,
+      "account": "Bank Mandiri",
+      "note": "Salary",
+      "status": "Income",
+      "category": "Salary"
+    },
+    {
+      "id": "82b2",
+      "date": "2024-09-14",
+      "amount": 250000,
+      "account": "Bank Mandiri",
+      "note": "Buy Makeup",
+      "status": "Expenses",
+      "category": "Beauty"
     }
   ],
   "budgeting": [

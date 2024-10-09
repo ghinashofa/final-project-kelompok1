@@ -382,7 +382,7 @@ export default function Dashboard() {
                                 <div className="mt-6 flex flex-col">
                                     <div className="flex justify-end">
                                         <Link to={"/transaction"}>
-                                            <button className="px-4 py-2 bg-none text-[#4C3BCF] hover:shadow-md rounded-md">
+                                            <button className="px-4 py-2 bg-none text-[#4C3BCF] hover:underline rounded-md">
                                                 See more
                                             </button>
                                         </Link>

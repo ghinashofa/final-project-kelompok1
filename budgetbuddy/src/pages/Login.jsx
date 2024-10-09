@@ -66,12 +66,12 @@ export default function Login() {
                 <img
                     alt="Login Background"
                     src={sideRight}
-                    className="absolute inset-0 h-full w-full object-cover p-4 rounded-2xl"
+                    className="absolute inset-0 h-full w-full object-cover p-6 rounded-2xl"
                 />
-                <div className="absolute inset-0 flex items-start pt-24 justify-center">
+                <div className="absolute inset-0 flex items-start pt-24 justify-start px-28">
                     <div className="bg-gradient-radial from-white via-[#E4E4E4]/75 to-white/61 bg-[#B7E9F6] bg-opacity-25 rounded-lg p-16 backdrop-blur-lg">
-                        <h1 className="text-white text-3xl font-semibold text-left leading-10">
-                            Manage Your Finances <br /> with Ease.
+                        <h1 className="text-white text-4xl font-semibold text-left py-6" style={{lineHeight:"140%"}}>
+                            Manage Your Finances with BudgetBuddy.
                         </h1>
                     </div>
                 </div>
@@ -79,10 +79,7 @@ export default function Login() {
 
             <div className="flex w-full lg:w-1/2 items-center justify-center px-16 py-2 lg:px-12">
                 <div className="w-full max-w-md">
-                    {/* <div className="flex flex-row items-center -ml-24 -mt-4 gap-4 mb-20">
-                        <img src={logo} alt="" className="h-8 w-auto" />
-                        <h1 className="text-xl font-semibold" style={{fontFamily:"Quicksand"}}>BudgetBuddy</h1>
-                    </div> */}
+
                     <div className="flex flex-col gap-2 mb-8">
                         <h2 className="text-3xl font-medium text-gray-900">
                             Sign in
@@ -109,7 +106,7 @@ export default function Login() {
                                     autoComplete="email"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
-                                    className="block w-full rounded-full mt-3 outline-none border border-[#cecece] border-opacity-100 p-3 shadow-sm placeholder:text-gray-400 focus:ring-2 focus:ring-[#4C3BCF] sm:text-sm sm:leading-6"
+                                    className="block w-full rounded-full mt-3 outline-none border border-[#cecece] border-opacity-100 p-3 px-4 shadow-sm placeholder:text-gray-400 focus:ring-2 focus:ring-[#4C3BCF] sm:text-sm sm:leading-6"
                                 />
                             </div>
                         </div>
@@ -132,7 +129,7 @@ export default function Login() {
                                     onChange={(e) =>
                                         setPassword(e.target.value)
                                     }
-                                    className="block w-full rounded-full mt-3 outline-none border border-[#cecece] border-opacity-100 p-3 shadow-sm placeholder:text-gray-400 focus:ring-2 focus:ring-[#4C3BCF] sm:text-sm sm:leading-6"
+                                    className="block w-full rounded-full mt-3 outline-none border border-[#cecece] border-opacity-100 p-3 px-4 shadow-sm placeholder:text-gray-400 focus:ring-2 focus:ring-[#4C3BCF] sm:text-sm sm:leading-6"
                                 />
                             </div>
                         </div>
@@ -166,7 +163,7 @@ export default function Login() {
                         <div>
                             <button
                                 type="submit"
-                                className="flex w-full justify-center mt-12 rounded-full bg-gradient-to-r from-[#4C3BCF] via-[#5C50E7] to-[#705FF3] text-white font-medium py-3 text-sm shadow-sm hover:bg-[#2c1e90] hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                className="flex w-full justify-center mt-12 rounded-full bg-gradient-to-r from-[#4C3BCF] via-[#5C50E7] to-[#705FF3] text-white font-medium py-3 text-sm shadow-sm hover:bg-[#2c1e90] hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                             >
                                 Sign in
                             </button>
@@ -206,7 +203,7 @@ export default function Login() {
                                 Don't have an account?{" "}
                                 <a
                                     href="/signup"
-                                    className="font-medium text-indigo-600 hover:text-indigo-500"
+                                    className="font-medium text-indigo-600 hover:text-[#4132b3] hover:underline"
                                 >
                                     Sign up
                                 </a>

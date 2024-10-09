@@ -1,5 +1,7 @@
 import React from "react";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
+import { NumericFormat } from "react-number-format";
+
 import { useNavigate } from "react-router-dom";
 import {
     Input,
@@ -52,7 +54,7 @@ export function ModalForm({ transactions, setTransactions }) {
 
         const dataSelect = {
             ...formData,
-            amount: parseFloat(formData.amount),
+            amount: parseFloat(formData.amount.replace(/,/g, "")),
             status: status,
             category: category,
         };
@@ -63,14 +65,14 @@ export function ModalForm({ transactions, setTransactions }) {
         //         title: "Invalid Amount",
         //         text: "Please enter a valid number for the amount.",
         //     });
-        //     return; 
+        //     return;
         // }
 
         async function addTransaction() {
             try {
                 const response = await axios.post(
                     "http://localhost:3000/transactions",
-                    dataSelect 
+                    dataSelect
                 );
                 console.log("Transaction added successfully:", response.data);
                 setTransactions([response.data, ...transactions]);
@@ -84,15 +86,15 @@ export function ModalForm({ transactions, setTransactions }) {
                     status: "",
                 });
 
-                setStatus(""); 
-                setCategory(""); 
+                setStatus("");
+                setCategory("");
                 Swal.fire({
                     position: "top-center",
                     icon: "success",
                     title: "Your work has been saved",
                     showConfirmButton: false,
-                    timer: 1500
-                  });
+                    timer: 1500,
+                });
 
                 navigate("/");
             } catch (error) {
@@ -100,8 +102,8 @@ export function ModalForm({ transactions, setTransactions }) {
                     icon: "error",
                     title: "Oops...",
                     text: "Something went wrong!",
-                    footer: '<a href="#">Why do I have this issue?</a>'
-                  });
+                    footer: '<a href="#">Why do I have this issue?</a>',
+                });
             }
         }
         addTransaction();
@@ -146,7 +148,6 @@ export function ModalForm({ transactions, setTransactions }) {
                                 color="gray"
                                 type="date"
                                 size="lg"
-                                placeholder="eg. White Shoes"
                                 name="date"
                                 onChange={handleChange}
                                 className="placeholder:opacity-100 focus:!border-t-gray-900"
@@ -156,7 +157,7 @@ export function ModalForm({ transactions, setTransactions }) {
                                 labelProps={{
                                     className: "hidden",
                                 }}
-                                style={{borderTop: "1px solid #B0BFC5"}}
+                                style={{ borderTop: "1px solid #B0BFC5" }}
                             />
                         </div>
                         <div>
@@ -194,14 +195,21 @@ export function ModalForm({ transactions, setTransactions }) {
                                 >
                                     Amount
                                 </Typography>
-                                <Input
-                                    color="gray"
-                                    type="number"
-                                    size="lg"
+                                <NumericFormat
+                                    className="placeholder:opacity-100 focus:!border-t-gray-900 w-full"
+                                    thousandSeparator="."
+                                    decimalSeparator=","
+                                    prefix="Rp"
+                                    value={formData.amount}
                                     placeholder="00"
-                                    name="amount"
-                                    onChange={handleChange}
-                                    className="placeholder:opacity-100 focus:!border-t-gray-900"
+                                    onValueChange={(values) => {
+                                        const { value } = values; // 'value' is the raw number without formatting
+                                        setFormData({
+                                            ...formData,
+                                            amount: value,
+                                        });
+                                    }}
+                                    customInput={Input}
                                     containerProps={{
                                         className: "!min-w-full",
                                     }}
@@ -244,13 +252,16 @@ export function ModalForm({ transactions, setTransactions }) {
                             </Typography>
                             <Select
                                 className="!w-full !border-[1.5px] !border-blue-gray-200/90 !border-t-blue-gray-200/90 bg-white text-gray-800 ring-4 ring-transparent placeholder:text-gray-600 focus:!border-primary focus:!border-t-blue-gray-900 group-hover:!border-primary"
-                                placeholder="Select Status"
+                                defaultValue=""
                                 onChange={(val) => setStatus(val)}
                                 name="status"
                                 labelProps={{
                                     className: "hidden",
-                                }}
+                                  }}
                             >
+                                <Option value="Select Status" disabled hidden>
+                                    Select Status
+                                </Option>
                                 <Option value="Income">Income</Option>
                                 <Option value="Expenses">Expenses</Option>
                             </Select>
@@ -267,7 +278,7 @@ export function ModalForm({ transactions, setTransactions }) {
                             <Input
                                 onChange={handleChange}
                                 name="note"
-                                placeholder="eg. This is a white shoes with a comfortable sole."
+                                placeholder="Addition notes"
                                 className="!w-full !border-[1.5px] !border-blue-gray-200/90 !border-t-blue-gray-200/90 bg-white text-gray-600 ring-4 ring-transparent focus:!border-primary focus:!border-t-blue-gray-900 group-hover:!border-primary"
                                 labelProps={{
                                     className: "hidden",
