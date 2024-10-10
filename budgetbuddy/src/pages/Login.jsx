@@ -200,7 +200,7 @@ export default function Login() {
                                 )}
                             />
                             <p className="mt-4 text-sm text-gray-500 text-center">
-                                Don't have an account?{" "}
+                                Don't have an account?{" "} 
                                 <a
                                     href="/signup"
                                     className="font-medium text-indigo-600 hover:text-[#4132b3] hover:underline"
